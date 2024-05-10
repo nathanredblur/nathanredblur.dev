@@ -3,7 +3,7 @@ export const experiences = [
     title: 'Senior Frontend Developer',
     company: "Getaround",
     duration: "2022-05 - 2024-05",
-    description: "I was responsible for building new product features from start to finish. This involved everything from conception and research to documentation, maintenance, and polish. Additionally, I actively contributed to key initiatives aimed at maintaining an elegant system and maximizing productivity. I focused on building and improving processes and internal tools with simplicity and productivity in mind. Over time, I gained ownership of a part of the codebase and contributed to its growth in accordance with our standards and best practices. As part of the team, I reviewed code from my peers and actively used and contributed to our in-house design system. Collaboration on product vision and software design decisions was also a crucial part of my role."
+    description: "I led the development of new product features from start to finish, including conception, research, documentation, maintenance, and refinement. I also contributed to key initiatives to enhance system elegance and productivity, focusing on streamlining processes and internal tools. Over time, I took ownership of part of the codebase, adhering to standards and best practices while driving its growth. Additionally, I conducted peer code reviews, contributed to our design system, and collaborated on product vision and software design decisions."
   },
   {
     title: "Senior Front-end Developer",

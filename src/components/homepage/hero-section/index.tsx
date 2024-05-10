@@ -1,5 +1,5 @@
 import { personalData } from "@/utils/data/personal-data";
-import { skillsData } from "@/utils/data/skills";
+import { skillsData, softSkillsData } from "@/utils/data/skills";
 import { keys } from "@/utils/type-safe";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { FaFacebook, FaTwitterSquare } from "react-icons/fa";
@@ -101,6 +101,19 @@ function HeroSection() {
                 <span className=" text-white">skills:</span>
                 <span className="text-gray-400">{`['`}</span>
                 {skillsData.map((skill, index) => (
+                  <>
+                    <span className="text-amber-300">{skill}</span>
+                    {index < skillsData.length - 1 && (
+                      <span className="text-gray-400">{"', '"}</span>
+                    )}
+                  </>
+                ))}
+                <span className="text-gray-400">{"'],"}</span>
+              </div>
+              <div className="ml-4 lg:ml-8 mr-2">
+                <span className=" text-white">softSkills:</span>
+                <span className="text-gray-400">{`['`}</span>
+                {softSkillsData.map((skill, index) => (
                   <>
                     <span className="text-amber-300">{skill}</span>
                     {index < skillsData.length - 1 && (

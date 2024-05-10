@@ -34,7 +34,7 @@ export const projectsData = [
     {
         id: 3,
         name: 'AllTheRooms Analytics',
-        description: 'My team and I built an dashboard that show advances graphs and maps with information about the vacation rental market. We used React, Next JS, Typescript, Google Maps API and Stripe.',
+        description: 'My team and I developed a dashboard showcasing advanced graphs and maps providing insights into the vacation rental market. We utilized React, Next.js, TypeScript, the Google Maps API, and Stripe.',
         tools: ['React', 'Next JS', 'Apollo GraphQL', 'Stripe', 'TypeScript', 'JWT'],
         code: '',
         role: 'Frontend Lead',
