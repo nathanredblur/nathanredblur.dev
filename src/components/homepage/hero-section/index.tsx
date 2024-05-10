@@ -116,7 +116,7 @@ function HeroSection() {
                 {softSkillsData.map((skill, index) => (
                   <>
                     <span className="text-amber-300">{skill}</span>
-                    {index < skillsData.length - 1 && (
+                    {index < softSkillsData.length - 1 && (
                       <span className="text-gray-400">{"', '"}</span>
                     )}
                   </>
