@@ -14,7 +14,12 @@ const AboutSection = () => (
           Who am I?
         </p>
         <p className="text-gray-200 text-sm lg:text-lg">
-          {personalData.description}
+          {personalData.description.split("\n").map((desc, index) => (
+            <span key={index}>
+              {desc}
+              <br />
+            </span>
+          ))}
         </p>
       </div>
       <div className="flex justify-center order-1 lg:order-2">

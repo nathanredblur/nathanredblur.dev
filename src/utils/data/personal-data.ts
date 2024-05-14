@@ -1,15 +1,16 @@
 export const personalData = {
-  pageTitle: "Nathan Rico - Senior Front-end Developer",
-  pageDescription: "This is the portfolio of Jonathan Rico. I am a front end developer and a self taught developer. I love to learn new things and I am always open to collaborating with others. I am a quick learner and I am always looking for new challenges.",
+  pageTitle: "Nathan Rico - Front-End Developer | React Developer | Web Development Expert",
+  pageDescription: "Welcome to the portfolio of Nathan Rico, a dynamic front-end developer based in Medellín, Colombia. With expertise in React, Redux, and Next.js, I offer innovative solutions for web development projects. Explore my skills and experience!",
   domain: "https://nathanredblur.github.io",
   repo: "https://github.com/nathanredblur/nathanredblur.github.io",
 
-  name: "Jonathan Rico",
+  name: "Nathan Rico",
   profile: '/photo.jpeg',
-  designation: "FrontEnd Developer",
+  designation: "Front-End Developer Expert",
   description: `
-    Hi, I'm Jonathan, a dynamic front-end developer with a keen eye for user-centric design. With a solid foundation in frameworks like React, Redux, and Next.js, I bring over a decade of hands-on experience in the evolving landscape of web development.
+    Hi, I'm Jonathan Rico, a dynamic front-end developer with a keen eye for user-centric design. With a solid foundation in frameworks like React, Redux, and Next.js, I bring over a decade of hands-on experience in the evolving landscape of web development.
     I've actively contributed to large-scale projects, leveraging a data-driven approach and collaborating with UX designers to architect optimal front-end solutions. Mentoring new developers is not just a task; it's a passion that fuels my commitment to continuous learning.
+    Let's innovate together!
   `,
   email: 'jon.nathan.rich@gmail.com',
   phone: '',
