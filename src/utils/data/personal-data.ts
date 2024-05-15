@@ -1,6 +1,6 @@
 export const personalData = {
   pageTitle: "Nathan Rico - Front-End Developer | React Developer | Web Development Expert",
-  pageDescription: "Welcome to the portfolio of Nathan Rico, a dynamic front-end developer based in Medellín, Colombia. With expertise in React, Redux, and Next.js, I offer innovative solutions for web development projects. Explore my skills and experience!",
+  pageDescription: "Front-end developer | React Specialist | Offering innovative solutions. Let's shape the future together. Explore my skills and experience!",
   domain: "https://nathanredblur.github.io",
   repo: "https://github.com/nathanredblur/nathanredblur.github.io",
 
