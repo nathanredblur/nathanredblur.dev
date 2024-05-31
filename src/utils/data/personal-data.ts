@@ -14,7 +14,7 @@ export const personalData = {
     I've actively contributed to large-scale projects, leveraging a data-driven approach and collaborating with UX designers to architect optimal front-end solutions. Mentoring new developers is not just a task; it's a passion that fuels my commitment to continuous learning.
     Let's innovate together!
   `,
-  email: "jon.nathan.rich@gmail.com",
+  email: "nathanredblur@duck.com",
   phone: "",
   address: "",
   social: {
