@@ -1,7 +1,9 @@
+import { generateText } from "@/utils/aiGenerate";
 import { useState, ChangeEvent } from "react";
 import { FaArrowUp } from "react-icons/fa6";
 
 type Message = {
+  id: string;
   text: string;
   from: "user" | "bot";
 };
@@ -11,13 +13,19 @@ const countLines = (text: string) => {
   return lines.length;
 };
 
+const generateRandomId = () => {
+  return Math.random().toString(36).substr(2, 9);
+};
+
 const maxRows = 4;
 
 function ContactForm() {
   const [input, setInput] = useState("");
   const [rows, setRows] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
+      id: generateRandomId(),
       text: "Hello! How can I help you?",
       from: "bot",
     },
@@ -29,29 +37,40 @@ function ContactForm() {
     setRows(lines < maxRows ? lines : maxRows);
   };
 
-  const sendMessage = async () => {
+  const askAi = async (input: string) => {
+    setIsLoading(true);
+    try {
+      const text = await generateText(input);
+
+      const botMessage: Message = {
+        id: generateRandomId(),
+        text,
+        from: "bot",
+      };
+      setMessages((messages) => [...messages, botMessage]);
+    } catch (error) {
+      console.error(error);
+      const botMessage: Message = {
+        id: generateRandomId(),
+        text: "Sorry, I couldn't understand that.",
+        from: "bot",
+      };
+      setMessages([...messages, botMessage]);
+    }
+    setIsLoading(false);
+  };
+
+  const sendMessage = () => {
     if (!input) return;
 
     const newMessage: Message = {
+      id: generateRandomId(),
       text: input,
       from: "user",
     };
     setMessages([...messages, newMessage]);
-
-    // try {
-    //   const res = await fetch()
-
-    //   if (res.status === 200) {
-    //     toast.success("Message sent successfully!");
-    //     setInput({
-    //       name: "",
-    //       email: "",
-    //       message: "",
-    //     });
-    //   }
-    // } catch (error) {
-    //   toast.error(error?.text || error);
-    // }
+    setInput("");
+    askAi(input);
   };
 
   return (
@@ -69,9 +88,9 @@ function ContactForm() {
           <div className="flex flex-col gap-2">
             <p className="text-[#16f2b3] font-semibold">Messages</p>
             <div className="flex flex-col gap-2">
-              {messages.map((msg, i) => (
+              {messages.map((msg) => (
                 <div
-                  key={i}
+                  key={msg.id}
                   className={`flex flex-col gap-1 ${
                     msg.from === "user" ? "items-end" : "items-start"
                   }`}
@@ -87,6 +106,11 @@ function ContactForm() {
                   </p>
                 </div>
               ))}
+              {isLoading && (
+                <div className="flex items-center justify-center">
+                  <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-violet-600"></div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -104,6 +128,7 @@ function ContactForm() {
                     overflowY: rows < maxRows ? "hidden" : "auto",
                   }}
                   spellCheck="false"
+                  value={input}
                   onChange={onChange}
                   onKeyDown={(e) => {
                     if (e.key === "Enter" && !e.shiftKey) {
