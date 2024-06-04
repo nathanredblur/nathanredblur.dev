@@ -103,12 +103,12 @@ function HeroSection() {
                 <span className=" text-white">skills:</span>
                 <span className="text-gray-400">{`['`}</span>
                 {skillsData.map((skill, index) => (
-                  <>
+                  <span key={index}>
                     <span className="text-amber-300">{skill}</span>
                     {index < skillsData.length - 1 && (
                       <span className="text-gray-400">{"', '"}</span>
                     )}
-                  </>
+                  </span>
                 ))}
                 <span className="text-gray-400">{"'],"}</span>
               </div>
@@ -116,12 +116,12 @@ function HeroSection() {
                 <span className=" text-white">softSkills:</span>
                 <span className="text-gray-400">{`['`}</span>
                 {softSkillsData.map((skill, index) => (
-                  <>
+                  <span key={index}>
                     <span className="text-amber-300">{skill}</span>
                     {index < softSkillsData.length - 1 && (
                       <span className="text-gray-400">{"', '"}</span>
                     )}
-                  </>
+                  </span>
                 ))}
                 <span className="text-gray-400">{"'],"}</span>
               </div>
