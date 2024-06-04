@@ -1,6 +1,7 @@
 import { generateText } from "@/utils/aiGenerate";
 import { useState, ChangeEvent } from "react";
 import { FaArrowUp } from "react-icons/fa6";
+import Markdown from "react-markdown";
 
 type Message = {
   id: string;
@@ -95,15 +96,15 @@ function ContactForm() {
                     msg.from === "user" ? "items-end" : "items-start"
                   }`}
                 >
-                  <p
+                  <div
                     className={`p-2 rounded-lg text-sm ${
                       msg.from === "user"
                         ? "bg-[#1a1443]"
                         : "bg-[#0a0d37] border border-[#16f2b3]"
                     }`}
                   >
-                    {msg.text}
-                  </p>
+                    <Markdown>{msg.text}</Markdown>
+                  </div>
                 </div>
               ))}
               {isLoading && (
