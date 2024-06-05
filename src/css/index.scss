@@ -12,6 +12,10 @@
   }
 }
 
+html {
+	scroll-behavior: smooth;
+}
+
 body {
   font-family: 'Inter Variable', sans-serif;
   color: rgb(var(--foreground-rgb));
