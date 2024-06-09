@@ -1,13 +1,17 @@
 import { personalData } from "@/utils/data/personal-data";
 import { BiLogoLinkedin } from "react-icons/bi";
 import { CiLocationOn } from "react-icons/ci";
-import { FaFacebook, FaStackOverflow } from "react-icons/fa";
+import { FaCalendar, FaStackOverflow } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { IoLogoGithub, IoMdCall } from "react-icons/io";
 import { MdAlternateEmail } from "react-icons/md";
 import ContactForm from "./contact-form";
+import { useState } from "react";
+import Modal from "@/components/Modal";
 
 function ContactSection() {
+  const [calendarModal, setCalendarModal] = useState(false);
+
   return (
     <div id="contact" className="my-12 lg:my-16 relative mt-24 text-white">
       <div className="hidden lg:flex flex-col items-center absolute top-24 -right-8">
@@ -79,13 +83,24 @@ function ContactSection() {
                 />
               </a>
             )}
-            {personalData.social.facebook && (
-              <a target="_blank" href={personalData.social.facebook}>
-                <FaFacebook
-                  className="bg-[#8b98a5] p-3 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
-                  size={48}
-                />
-              </a>
+            {personalData.social.calendar && (
+              <>
+                <a target="_blank" onClick={() => setCalendarModal(true)}>
+                  <FaCalendar
+                    className="bg-[#8b98a5] p-3 rounded-full hover:bg-[#16f2b3] hover:scale-110 transition-all duration-300 text-gray-800 cursor-pointer"
+                    size={48}
+                  />
+                </a>
+                <Modal
+                  isOpen={calendarModal}
+                  onRequestClose={() => setCalendarModal(false)}
+                >
+                  <iframe
+                    src={personalData.social.calendar}
+                    className="w-full h-full bg-white"
+                  ></iframe>
+                </Modal>
+              </>
             )}
           </div>
         </div>
