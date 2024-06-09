@@ -1,3 +1,5 @@
+import { forwardRef } from "react";
+
 type Props = {
   title?: string;
   onClickClose?: (e: React.MouseEvent<HTMLDivElement>) => void;
@@ -5,10 +7,14 @@ type Props = {
   className?: string;
 };
 
-const WindowBox = ({ title, onClickClose, children, className }: Props) => {
+const WindowBox = (
+  { title, onClickClose, children, className }: Props,
+  ref: React.ForwardedRef<HTMLDivElement>
+) => {
   return (
     <div
       className={`flex flex-col w-full relative border rounded-lg border-[#1b2c68a0] bg-gradient-to-r from-[#0d1224] to-[#0a0d37] ${className}`}
+      ref={ref}
     >
       <div className="flex flex-row">
         <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-pink-500 to-violet-600"></div>
@@ -16,7 +22,9 @@ const WindowBox = ({ title, onClickClose, children, className }: Props) => {
       </div>
       <div className="px-4 lg:px-8 py-3 lg:py-5 relative">
         <div
-          className="flex flex-row space-x-1 lg:space-x-2 absolute top-1/2 -translate-y-1/2"
+          className={`flex flex-row space-x-1 lg:space-x-2 absolute top-1/2 -translate-y-1/2
+            ${onClickClose ? "cursor-pointer" : ""}
+            `}
           onClick={onClickClose}
         >
           <div className="h-2 w-2 lg:h-3 lg:w-3 rounded-full bg-red-400"></div>
@@ -34,4 +42,4 @@ const WindowBox = ({ title, onClickClose, children, className }: Props) => {
   );
 };
 
-export default WindowBox;
+export default forwardRef(WindowBox);

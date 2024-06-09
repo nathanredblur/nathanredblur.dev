@@ -93,7 +93,7 @@ function ContactSection() {
                 </a>
                 <Modal
                   isOpen={calendarModal}
-                  onRequestClose={() => setCalendarModal(false)}
+                  onRequestClose={(status) => setCalendarModal(status)}
                 >
                   <iframe
                     src={personalData.social.calendar}

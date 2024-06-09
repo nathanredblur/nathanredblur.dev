@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
+import { Dialog, Transition, TransitionChild } from "@headlessui/react";
 import WindowBox from "../WindowBox";
 
 type Props = {
   isOpen: boolean;
   className?: string;
-  onRequestClose: () => void;
+  onRequestClose: (status: boolean) => void;
   title?: string;
   children: React.ReactNode;
 };
@@ -16,42 +16,42 @@ const Modal = ({
   children,
   className,
 }: Props) => {
-  const [isModalOpen, setIsModalOpen] = useState(isOpen);
-  const closeModal = () => {
-    setIsModalOpen(false);
-    onRequestClose();
+  const onClose = () => {
+    onRequestClose(false);
   };
-
-  useEffect(() => {
-    setIsModalOpen(isOpen);
-  }, [isOpen]);
-
-  if (!isModalOpen) return null;
-
-  const onModalClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-    closeModal();
-  };
-
   return (
-    <>
-      <div
-        className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-80 z-[100]"
-        onClick={closeModal}
-      ></div>
-      <div
-        className="fixed z-[101] flex items-center justify-center inset-0"
-        onClick={onModalClick}
-      >
-        <WindowBox
-          title={title}
-          onClickClose={onModalClick}
-          className={"w-full max-w-[800px] h-[80vh] " + className}
-        >
-          {children}
-        </WindowBox>
-      </div>
-    </>
+    <Transition show={isOpen}>
+      <Dialog onClose={onClose} className="relative z-50">
+        <div className="fixed inset-0 flex items-center justify-center p-4">
+          <TransitionChild
+            enter="ease-out duration-300"
+            enterFrom="opacity-0"
+            enterTo="opacity-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100"
+            leaveTo="opacity-0"
+          >
+            <div className="fixed inset-0 bg-black/80" onClick={onClose} />
+          </TransitionChild>
+          <TransitionChild
+            enter="ease-out duration-300"
+            enterFrom="opacity-0 scale-95"
+            enterTo="opacity-100 scale-100"
+            leave="ease-in duration-200"
+            leaveFrom="opacity-100 scale-100"
+            leaveTo="opacity-0 scale-95"
+          >
+            <WindowBox
+              title={title}
+              onClickClose={onClose}
+              className={"w-full max-w-[800px] h-[80vh] " + className}
+            >
+              {children}
+            </WindowBox>
+          </TransitionChild>
+        </div>
+      </Dialog>
+    </Transition>
   );
 };
 
