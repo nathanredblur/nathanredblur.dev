@@ -1,11 +1,11 @@
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import { personalData } from "@/utils/data/personal-data";
 import Footer from "@components/footer";
 import Navbar from "@components/navbar";
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div>
+    <HelmetProvider>
       <Helmet>
         <title>{personalData.pageTitle}</title>
         <meta name="description" content={personalData.pageDescription} />
@@ -15,7 +15,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </main>
       <Footer />
-    </div>
+    </HelmetProvider>
   );
 };
 
