@@ -1,5 +1,5 @@
 import { generateText } from "@/utils/aiGenerate";
-import { useState, ChangeEvent, useRef, useEffect } from "react";
+import { useState, ChangeEvent, useRef } from "react";
 import { FaArrowUp } from "react-icons/fa6";
 import Markdown from "react-markdown";
 
@@ -64,11 +64,8 @@ function ContactForm() {
       setMessages([...messages, botMessage]);
     }
     setIsLoading(false);
-  };
-
-  useEffect(() => {
     scrollToBottom();
-  }, [messages.length]);
+  };
 
   const sendMessage = () => {
     if (!input) return;
@@ -85,7 +82,7 @@ function ContactForm() {
 
   return (
     <div className="">
-      <p className="font-medium mb-5 text-[#16f2b3] text-xl uppercase">
+      <p className="font-medium mb-5 text-cyan-400 text-xl uppercase">
         Contact with me
       </p>
       <div className="max-w-3xl text-white rounded-lg border border-[#464c6a] p-3 lg:p-5 max-h-[80vh] overflow-y-auto">
@@ -96,7 +93,7 @@ function ContactForm() {
         </p>
         <div className="mt-6 flex flex-col gap-4">
           <div className="flex flex-col gap-2">
-            <p className="text-[#16f2b3] font-semibold">Messages</p>
+            <p className="text-cyan-400 font-semibold">Messages</p>
             <div className="flex flex-col gap-2">
               {messages.map((msg) => (
                 <div
