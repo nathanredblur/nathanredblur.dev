@@ -5,7 +5,10 @@ const Navbar = () => {
     <nav className="bg-transparent">
       <div className="flex items-center justify-between py-5">
         <div className="flex flex-shrink-0 items-center">
-          <a href="/" className=" text-[#16f2b3] text-3xl font-bold uppercase">
+          <a
+            href="/"
+            className=" text-cyan-400 text-3xl font-semibold uppercase"
+          >
             {personalData.name}
           </a>
         </div>

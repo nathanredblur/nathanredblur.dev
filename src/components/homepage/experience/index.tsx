@@ -1,9 +1,10 @@
+import { useState } from "react";
 import { experiences } from "@/utils/data/experience";
-import { BsPersonWorkspace } from "react-icons/bs";
 import AnimationLottie from "@components/helper/animation-lottie";
 import GlowCard from "@components/helper/glow-card";
 import lottieAnimation from "@/assets/lottie/code.json";
-import { useState } from "react";
+import { BsPersonWorkspace } from "react-icons/bs";
+import { FaReact, FaUserTie } from "react-icons/fa";
 
 function Experience() {
   const [collapsStatus, setCollapsStatus] = useState<{
@@ -50,8 +51,16 @@ function Experience() {
           <div>
             <div className="flex flex-col gap-6">
               {experiences.map((experience) => {
-                const id = `experience-${experience.company}`;
+                const id = `experience-${experience.company.split(" ")[0]}`;
                 const isOpen = collapsStatus[id];
+                let IconType;
+                if (experience.type === "React") {
+                  IconType = FaReact;
+                } else if (experience.type === "Manager") {
+                  IconType = FaUserTie;
+                } else {
+                  IconType = BsPersonWorkspace;
+                }
 
                 return (
                   <GlowCard
@@ -59,7 +68,7 @@ function Experience() {
                     identifier={id}
                     onClick={() => handleCollapse(id)}
                   >
-                    <div className="p-3 relative">
+                    <div className="p-3 relative overflow-hidden">
                       <img
                         src="/blur-23.svg"
                         alt="Hero"
@@ -67,18 +76,18 @@ function Experience() {
                         height={200}
                         className="absolute bottom-0 opacity-80"
                       />
-                      <div className="flex justify-center">
-                        <p className="text-xs sm:text-sm text-[#16f2b3]">
+                      <div className="flex justify-end">
+                        <p className="text-xs sm:text-sm text-cyan-400">
                           {experience.duration}
                         </p>
                       </div>
-                      <div className="px-3 py-5">
+                      <div className="p-3">
                         <div className="flex items-center gap-x-8">
                           <div className="text-violet-500  transition-all duration-300 hover:scale-125">
-                            <BsPersonWorkspace size={36} />
+                            <IconType size={36} />
                           </div>
                           <div>
-                            <p className="text-base sm:text-xl mb-2 font-medium uppercase">
+                            <p className="text-base sm:text-xl mb-2 font-medium text-pink-500">
                               {experience.title}
                             </p>
                             <p className="text-sm sm:text-base font-bold">
@@ -86,12 +95,12 @@ function Experience() {
                             </p>
                           </div>
                         </div>
-                        <div className="flex items-center gap-x-8">
-                          <div
-                            className={`text-sm sm:text-base collaps ${
-                              isOpen ? "open" : ""
-                            }`}
-                          >
+                        <div
+                          className={`flex items-center gap-x-8 collaps ${
+                            isOpen ? "open" : ""
+                          }`}
+                        >
+                          <div className={`text-sm sm:text-base pt-5`}>
                             {experience.description}
                           </div>
                         </div>

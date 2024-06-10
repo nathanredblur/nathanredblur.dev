@@ -10,17 +10,17 @@ const AboutSection = () => (
     </div>
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
       <div className="order-2 lg:order-1">
-        <p className="font-medium mb-5 text-[#16f2b3] text-xl uppercase">
+        <p className="font-medium mb-5 text-cyan-400 text-xl uppercase">
           Who am I?
         </p>
-        <p className="text-gray-200 text-sm lg:text-lg">
+        <div className="text-gray-200 text-sm lg:text-lg">
           {personalData.description.split("\n").map((desc, index) => (
-            <span key={index}>
+            <p className="mb-5" key={index}>
               {desc}
               <br />
-            </span>
+            </p>
           ))}
-        </p>
+        </div>
       </div>
       <div className="flex justify-center order-1 lg:order-2 items-start">
         <img

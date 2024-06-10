@@ -15,7 +15,7 @@ const Footer = () => {
             <a
               target="_blank"
               href={personalData.domain}
-              className="text-[#16f2b3]"
+              className="text-cyan-400"
             >
               {personalData.name}
             </a>
@@ -24,7 +24,7 @@ const Footer = () => {
             <a
               target="_blank"
               href={personalData.repo}
-              className="flex items-center gap-2 uppercase hover:text-[#16f2b3]"
+              className="flex items-center gap-2 uppercase hover:text-cyan-400"
             >
               <IoStar />
               <span>Star</span>
@@ -32,7 +32,7 @@ const Footer = () => {
             <a
               target="_blank"
               href={`${personalData.repo}/fork`}
-              className="flex items-center gap-2 uppercase hover:text-[#16f2b3]"
+              className="flex items-center gap-2 uppercase hover:text-cyan-400"
             >
               <CgGitFork />
               <span>Fork</span>
