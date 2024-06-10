@@ -1,5 +1,5 @@
 import { generateText } from "@/utils/aiGenerate";
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, useRef, useEffect } from "react";
 import { FaArrowUp } from "react-icons/fa6";
 import Markdown from "react-markdown";
 
@@ -21,6 +21,7 @@ const generateRandomId = () => {
 const maxRows = 4;
 
 function ContactForm() {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
   const [input, setInput] = useState("");
   const [rows, setRows] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -36,6 +37,10 @@ function ContactForm() {
     setInput(e.target.value);
     const lines = countLines(e.target.value);
     setRows(lines < maxRows ? lines : maxRows);
+  };
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   const askAi = async (input: string) => {
@@ -61,6 +66,10 @@ function ContactForm() {
     setIsLoading(false);
   };
 
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages.length]);
+
   const sendMessage = () => {
     if (!input) return;
 
@@ -79,7 +88,7 @@ function ContactForm() {
       <p className="font-medium mb-5 text-[#16f2b3] text-xl uppercase">
         Contact with me
       </p>
-      <div className="max-w-3xl text-white rounded-lg border border-[#464c6a] p-3 lg:p-5">
+      <div className="max-w-3xl text-white rounded-lg border border-[#464c6a] p-3 lg:p-5 max-h-[80vh] overflow-y-auto">
         <p className="text-sm text-[#d3d8e8]">
           {
             "I'm a AI chatbot, I can solve any question about me, my projects, my skills, my experience, etc. Feel free to ask me anything!"
@@ -115,7 +124,10 @@ function ContactForm() {
             </div>
           </div>
 
-          <div className="flex w-full flex-col gap-1.5 rounded-[26px] p-1.5 bg-[#10172d] border border-[#353a52]">
+          <div
+            ref={messagesEndRef}
+            className="flex w-full flex-col gap-1.5 rounded-[26px] p-1.5 bg-[#10172d] border border-[#353a52]"
+          >
             <div className="flex items-end gap-1.5 md:gap-3.5">
               <div className="flex min-w-0 flex-1 flex-col pl-3.5">
                 <textarea
