@@ -3,8 +3,8 @@ export const personalData = {
     "Nathan Rico - Front-End Developer | React Developer | Web Development Expert",
   pageDescription:
     "Front-end developer | React Specialist | Offering innovative solutions. Let's shape the future together. Explore my skills and experience!",
-  domain: "https://nathanredblur.github.io",
-  repo: "https://github.com/nathanredblur/nathanredblur.github.io",
+  domain: "https://nathanredblur.dev",
+  repo: "https://github.com/nathanredblur/nathanredblur.dev",
 
   name: "Nathan Rico",
   profile: "/photo.jpeg",
