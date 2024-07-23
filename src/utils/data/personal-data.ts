@@ -15,6 +15,7 @@ export const personalData = {
   email: "nathanredblur@duck.com",
   phone: "",
   address: "",
+  socialName: "@NathanRedBlur",
   social: {
     github: "https://github.com/nathanredblur",
     linkedIn: "https://www.linkedin.com/in/nathanredblur/",

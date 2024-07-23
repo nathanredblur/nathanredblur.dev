@@ -22,18 +22,19 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     /* Paths */
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
       "@/*": [
-        "*"
+        "./src/*"
       ],
       "@components/*": [
-        "components/*"
+        "./src/components/*"
       ]
     }
   },
   "include": [
-    "src"
+    "src",
+    "pages"
   ],
   "references": [
     {

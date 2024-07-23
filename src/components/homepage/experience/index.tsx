@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { experiences } from "@/utils/data/experience";
-import AnimationLottie from "@components/helper/animation-lottie";
-import GlowCard from "@components/helper/glow-card";
+import AnimationLottie from "@components/AnimationLottie";
+import GlowCard from "@components/GlowCard";
 import lottieAnimation from "@/assets/lottie/code.json";
 import { BsPersonWorkspace } from "react-icons/bs";
 import { FaReact, FaUserTie } from "react-icons/fa";

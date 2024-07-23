@@ -1,7 +1,7 @@
 import { educations } from "@/utils/data/educations";
 import { BsPersonWorkspace } from "react-icons/bs";
-import AnimationLottie from "../../helper/animation-lottie";
-import GlowCard from "../../helper/glow-card";
+import AnimationLottie from "@components/AnimationLottie";
+import GlowCard from "@components/GlowCard";
 import lottieFile from "@/assets/lottie/study.json";
 
 function Education() {

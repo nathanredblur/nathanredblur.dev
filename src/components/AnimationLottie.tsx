@@ -1,20 +1,23 @@
-import Lottie, { LottieComponentProps } from "lottie-react";
+import { LottieComponentProps, useLottie } from "lottie-react";
 
 type AnimationLottieProps = {
   animationPath: LottieComponentProps["animationData"];
 };
 
+const style = {
+  width: "95%",
+};
+
 const AnimationLottie = ({ animationPath }: AnimationLottieProps) => {
-  const defaultOptions = {
+  const options = {
     loop: true,
     autoplay: true,
     animationData: animationPath,
-    style: {
-      width: "95%",
-    },
   };
 
-  return <Lottie {...defaultOptions} />;
+  const { View } = useLottie(options, style);
+
+  return View;
 };
 
 export default AnimationLottie;

@@ -1,6 +1,9 @@
 import { skillsData } from "@/utils/data/skills";
 import { skillsImage } from "@/utils/skill-image";
-import Marquee from "react-fast-marquee";
+import MarqueePkg from "react-fast-marquee";
+
+// @ts-expect-error https://vike.dev/broken-npm-package#react-invalid-component
+const Marquee = MarqueePkg.default ?? MarqueePkg;
 
 function Skills() {
   return (
