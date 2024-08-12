@@ -53,6 +53,7 @@ export const authOptions: NextAuthOptions = {
     }),
   },
   adapter: DrizzleAdapter(db, {
+    // todo: @auth/drizzle-adapter 1.4.2 broke the build https://github.com/nextauthjs/next-auth/issues/11490
     usersTable: users,
     accountsTable: accounts,
     sessionsTable: sessions,
