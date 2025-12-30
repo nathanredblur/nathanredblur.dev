@@ -3,6 +3,7 @@
 
 TEMPLATE_BRANCH="cursor-template"
 FOLDERS=(".cursor" ".specify")
+FILES=("GETTING_STARTED.md")
 SCRIPT_NAME="sync-cursor-template.sh"
 CURRENT_BRANCH=$(git branch --show-current)
 
@@ -47,6 +48,16 @@ pull_from_template() {
         fi
     done
     
+    # Sync additional files
+    for file in "${FILES[@]}"; do
+        if git ls-tree -r $TEMPLATE_BRANCH --name-only | grep -q "^$file$"; then
+            echo -e "${GREEN}Copying $file${NC}"
+            git checkout $TEMPLATE_BRANCH -- $file
+        else
+            echo -e "${YELLOW}$file does not exist in $TEMPLATE_BRANCH${NC}"
+        fi
+    done
+    
     echo -e "${GREEN}✓ Changes pulled from $TEMPLATE_BRANCH${NC}"
     echo -e "${YELLOW}Review changes and commit if necessary:${NC}"
     echo "  git status"
@@ -70,6 +81,14 @@ push_to_template() {
     if [ -f "$SCRIPT_NAME" ]; then
         files_exist=true
     fi
+    
+    # Also check if additional files exist
+    for file in "${FILES[@]}"; do
+        if [ -f "$file" ]; then
+            files_exist=true
+            break
+        fi
+    done
     
     if [ "$files_exist" = false ]; then
         echo -e "${RED}Error: No folders or script found to sync${NC}"
@@ -102,12 +121,20 @@ push_to_template() {
         fi
     done
     
+    # Copy additional files from original branch
+    for file in "${FILES[@]}"; do
+        if git ls-tree -r $CURRENT_BRANCH --name-only | grep -q "^$file$"; then
+            echo -e "${GREEN}Copying $file from $CURRENT_BRANCH${NC}"
+            git checkout $CURRENT_BRANCH -- $file
+        fi
+    done
+    
     # Check if there are changes
     if git diff-index --quiet HEAD --; then
         echo -e "${YELLOW}No new changes to push${NC}"
     else
         echo -e "${GREEN}Committing changes...${NC}"
-        git add "${FOLDERS[@]}" "$SCRIPT_NAME" 2>/dev/null
+        git add "${FOLDERS[@]}" "${FILES[@]}" "$SCRIPT_NAME" 2>/dev/null
         git commit -m "Update templates from $CURRENT_BRANCH"
         echo -e "${GREEN}✓ Changes pushed to $TEMPLATE_BRANCH${NC}"
         echo -e "${YELLOW}Don't forget to push:${NC}"
