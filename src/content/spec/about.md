@@ -8,6 +8,21 @@ I've actively contributed to large-scale projects, leveraging a data-driven appr
 
 ---
 
+## Beyond Code
+
+I'm endlessly curious and love experimenting with software, hardware, and learning about new things. When I'm not coding, you'll find me:
+
+- 🎮 **Playing indie games** — I appreciate unique mechanics and art styles
+- 🎵 **Listening to music** — Eclectic taste, always discovering new artists
+- 📺 **Watching anime** — Both classics and seasonal picks
+- 🌆 **Appreciating Y2K & retro-futuristic aesthetics** — That early 2000s tech optimism hits different
+
+### My Setup
+
+I work on a **Mac mini M1** and **MacBook Pro M4**, using **Cursor** as my main editor with **Claude** as my AI assistant. I'm a macOS power user who loves CLI tools and automation — you can see my curated app collection at [MacSnap](https://macsnap.nathanredblur.dev/).
+
+---
+
 ## Skills
 
 ### Technical Skills
