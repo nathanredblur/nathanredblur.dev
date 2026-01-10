@@ -19,6 +19,14 @@ export type SiteConfig = {
   themeColor: {
     hue: number;
     fixed: boolean;
+    /**
+     * If set, the light/dark mode is fixed and the user cannot change it.
+     * - "light": Fixed to light mode
+     * - "dark": Fixed to dark mode
+     * - "auto": Fixed to auto mode (follows system preference)
+     * - undefined: User can change the theme (default behavior)
+     */
+    lightDark?: LIGHT_DARK_MODE;
   };
   banner: {
     enable: boolean;
