@@ -1,0 +1,158 @@
+---
+import { Icon } from "astro-icon/components";
+import { personalData } from "@/data/personal-data";
+import { skillsData, softSkillsData } from "@/data/skills";
+import WindowBox from "./WindowBox.astro";
+
+const socialIcons: Record<string, string> = {
+	github: "fa6-brands:github",
+	linkedIn: "fa6-brands:linkedin",
+	twitter: "fa6-brands:x-twitter",
+};
+---
+
+<section class="relative flex flex-col items-center justify-between py-4 lg:py-12">
+	<img
+        src="/hero.svg"
+        alt="Hero"
+        width={1572}
+        height={795}
+        class="absolute -top-[98px] -z-10"
+      />
+
+	<div class="grid grid-cols-1 items-start lg:grid-cols-2 lg:gap-12 gap-y-8 relative z-10">
+		{/* Left side - Text content */}
+		<div class="flex flex-col items-start justify-center p-2 pb-20 md:pb-10 lg:pt-10 bg-black/80 backdrop-blur-sm rounded-lg">
+			<h1 class="text-3xl leading-10 text-white lg:text-[2.6rem] lg:leading-[3.5rem]">
+				This is
+				<span class="font-semibold text-pink-500">
+					{" "}
+					{personalData.name}
+				</span>
+				,
+				<br />
+				<span class="text-cyan-400">{personalData.designation}</span>.
+			</h1>
+
+			{/* Social Links */}
+			<div class="my-12 flex items-center gap-5">
+				{Object.entries(personalData.social).map(([key, value]) => {
+					if (!value || !socialIcons[key]) return null;
+					return (
+						<a
+							href={value}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="transition-all duration-300 hover:scale-125 text-pink-500 hover:text-pink-400"
+							aria-label={key}
+						>
+							<Icon name={socialIcons[key]} class="text-[1.875rem]" />
+						</a>
+					);
+				})}
+			</div>
+
+			{/* CTA Buttons */}
+			<div class="flex items-center gap-3 flex-wrap">
+				<a
+					href={personalData.social.linkedIn}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="bg-gradient-to-r from-pink-500 to-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-violet-600 hover:to-pink-500"
+				>
+					<span class="px-4 md:px-8 py-3 md:py-4 bg-[#0d1224] rounded-full text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 flex items-center gap-2 hover:gap-3">
+						<span>Contact me</span>
+						<Icon name="fa6-solid:envelope" class="text-[1.25rem]" />
+					</span>
+				</a>
+
+				{personalData.resume && (
+					<a
+						class="flex items-center gap-2 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-4 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 hover:from-violet-600 hover:to-pink-500"
+						target="_blank"
+						rel="noopener noreferrer"
+						href={personalData.resume}
+					>
+						<span>Get Resume</span>
+						<Icon name="fa6-solid:file-pdf" class="text-[1.25rem]" />
+					</a>
+				)}
+			</div>
+		</div>
+
+		{/* Right side - Code Window */}
+		<div class="relative">
+			<WindowBox>
+				<code class="font-mono text-xs md:text-sm lg:text-base">
+					<div class="blink">
+						<span class="mr-2 text-pink-500">const</span>
+						<span class="mr-2 text-white">coder</span>
+						<span class="mr-2 text-pink-500">=</span>
+						<span class="text-gray-400">{"{"}</span>
+					</div>
+					<div>
+						<span class="ml-4 lg:ml-8 mr-2 text-white">name:</span>
+						<span class="text-gray-400">'</span>
+						<span class="text-amber-300">{personalData.name}</span>
+						<span class="text-gray-400">',</span>
+					</div>
+					<div class="ml-4 lg:ml-8 mr-2">
+						<span class="text-white">skills:</span>
+						<div class="ml-4 lg:ml-8 mr-2">
+							<span class="text-gray-400">['</span>
+							{skillsData.map((skill, index) => (
+								<span>
+									<span class="text-amber-300">{skill}</span>
+									{index < skillsData.length - 1 && (
+										<span class="text-gray-400">', '</span>
+									)}
+								</span>
+							))}
+							<span class="text-gray-400">'],</span>
+						</div>
+					</div>
+					<div class="ml-4 lg:ml-8 mr-2">
+						<span class="text-white">softSkills:</span>
+						<div class="ml-4 lg:ml-8 mr-2">
+							<span class="text-gray-400">['</span>
+							{softSkillsData.map((skill, index) => (
+								<span>
+									<span class="text-amber-300">{skill}</span>
+									{index < softSkillsData.length - 1 && (
+										<span class="text-gray-400">', '</span>
+									)}
+								</span>
+							))}
+							<span class="text-gray-400">'],</span>
+						</div>
+					</div>
+					<div>
+						<span class="ml-4 lg:ml-8 mr-2 text-white">
+							hardWorker:
+						</span>
+						<span class="text-orange-400">true</span>
+						<span class="text-gray-400">,</span>
+					</div>
+					<div>
+						<span class="ml-4 lg:ml-8 mr-2 text-white">
+							quickLearner:
+						</span>
+						<span class="text-orange-400">true</span>
+						<span class="text-gray-400">,</span>
+					</div>
+					<div>
+						<span class="ml-4 lg:ml-8 mr-2 text-white">
+							problemSolver:
+						</span>
+						<span class="text-orange-400">true</span>
+						<span class="text-gray-400">,</span>
+					</div>
+					<div>
+						<span class="text-gray-400">{"};"}</span>
+					</div>
+				</code>
+			</WindowBox>
+		</div>
+	</div>
+</section>
+

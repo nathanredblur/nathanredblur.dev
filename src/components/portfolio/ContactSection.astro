@@ -1,0 +1,118 @@
+---
+import { Icon } from "astro-icon/components";
+import { personalData } from "@/data/personal-data";
+
+const contactLinks = [
+	{
+		icon: "fa6-solid:envelope",
+		label: "Email",
+		value: personalData.email,
+		href: `mailto:${personalData.email}`,
+		color: "text-pink-500 hover:text-pink-400",
+	},
+	{
+		icon: "fa6-brands:github",
+		label: "GitHub",
+		value: "nathanredblur",
+		href: personalData.social.github,
+		color: "text-gray-300 hover:text-white",
+	},
+	{
+		icon: "fa6-brands:linkedin",
+		label: "LinkedIn",
+		value: "nathanredblur",
+		href: personalData.social.linkedIn,
+		color: "text-blue-400 hover:text-blue-300",
+	},
+	{
+		icon: "fa6-brands:x-twitter",
+		label: "Twitter",
+		value: "@NathanRedBlur",
+		href: personalData.social.twitter,
+		color: "text-gray-300 hover:text-white",
+	},
+];
+---
+
+<section
+	id="contact"
+	class="relative z-50 border-t my-12 lg:my-24 border-[#25213b]"
+>
+	<img
+		src="/section.svg"
+		alt="Hero"
+		width={1572}
+		height={795}
+		class="absolute top-0 -z-10"
+	/>
+
+	<div class="flex justify-center my-5 lg:py-8">
+		<div class="flex items-center">
+			<span class="w-24 h-[2px] bg-[#1a1443]"></span>
+			<span class="bg-[#1a1443] w-fit text-white p-2 px-5 text-3xl rounded-md">
+				Contact Me
+			</span>
+			<span class="w-24 h-[2px] bg-[#1a1443]"></span>
+		</div>
+	</div>
+
+	<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center py-8 px-4 lg:px-8">
+		<!-- Illustration -->
+		<div class="hidden lg:flex justify-center items-center">
+			<div class="w-full max-w-md">
+				<Icon name="fa6-solid:paper-plane" class="w-full h-auto text-violet-500/20" />
+			</div>
+		</div>
+
+		<!-- Contact Info -->
+		<div class="flex flex-col gap-6">
+			<p class="text-gray-300 text-lg mb-4">
+				I'm currently available for freelance work or full-time positions.
+				Feel free to reach out if you have any questions or just want to say
+				hi!
+			</p>
+
+			<!-- Contact Links -->
+			<div class="flex flex-col gap-4">
+				{contactLinks.map((link) => {
+					if (!link.href) return null;
+					return (
+						<a
+							href={link.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							class={`flex items-center gap-4 p-4 rounded-lg border border-[#2a2e5a] bg-[#101123] hover:border-violet-500 transition-all duration-300 group ${link.color}`}
+						>
+							<Icon name={link.icon} class="w-6 h-6" />
+							<div class="flex flex-col">
+								<span class="text-xs text-gray-500 uppercase tracking-wider">
+									{link.label}
+								</span>
+								<span class="text-white group-hover:text-violet-400 transition-colors">
+									{link.value}
+								</span>
+							</div>
+							<Icon 
+								name="fa6-solid:arrow-right" 
+								class="w-5 h-5 ml-auto opacity-0 group-hover:opacity-100 transition-opacity" 
+							/>
+						</a>
+					);
+				})}
+			</div>
+
+			<!-- Schedule Meeting Button -->
+			{personalData.social.calendar && (
+				<a
+					href={personalData.social.calendar}
+					target="_blank"
+					rel="noopener noreferrer"
+					class="flex items-center gap-2 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-4 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 hover:from-violet-600 hover:to-pink-500 justify-center mt-4"
+				>
+					<Icon name="fa6-solid:calendar" class="w-5 h-5" />
+					<span>Schedule a Meeting</span>
+				</a>
+			)}
+		</div>
+	</div>
+</section>

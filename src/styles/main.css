@@ -150,3 +150,38 @@
     }
   }
 }
+
+/* Enable smooth height transitions for details content (CSS-only) */
+@supports (interpolate-size: allow-keywords) {
+    :root {
+        interpolate-size: allow-keywords;
+    }
+
+    details::details-content {
+        transition: height 0.3s ease, content-visibility 0.3s ease allow-discrete;
+        height: 0;
+        overflow: clip;
+    }
+
+    details[open]::details-content {
+        height: auto;
+    }
+}
+
+/* Blink Animation for cursor */
+.blink::after {
+    content: "|";
+    animation: blink 1s step-end infinite;
+    color: #ec4899;
+}
+
+
+@keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+}

@@ -1,0 +1,113 @@
+---
+import { experiences } from "@/data/experience";
+import GlowCard from "./GlowCard.astro";
+
+const icons = {
+	React: "fa6-brands:react",
+	Manager: "fa6-solid:user-tie",
+	Developer: "fa6-solid:laptop-code",
+};
+---
+
+<section
+	id="experience"
+	class="relative z-50 border-t my-12 lg:my-24 border-[#25213b]"
+>
+<img
+src="/section.svg"
+alt="Hero"
+width={1572}
+height={795}
+class="absolute top-0 -z-10"
+/>
+
+<div class="flex justify-center my-5 lg:py-8">
+<div class="flex  items-center">
+	<span class="w-24 h-[2px] bg-[#1a1443]"></span>
+	<span class="bg-[#1a1443] w-fit text-white p-2 px-5 text-3xl rounded-md">
+		Experiences
+	</span>
+	<span class="w-24 h-[2px] bg-[#1a1443]"></span>
+</div>
+</div>
+
+<div class="py-8 px-4 lg:px-8">
+	<!-- Experience Cards: 1 col mobile, 2 cols desktop, items-start so expanded cards don't stretch siblings -->
+	<div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+		{experiences.map((experience) => {
+			return (
+				<GlowCard experience={experience} />
+			);
+		})}
+	</div>
+</div>
+</section>
+
+<script>
+	function initGlowCards() {
+		const containers = document.querySelectorAll<HTMLDivElement>('.glow-container');
+
+		for (const container of containers) {
+			const identifier = container.className.match(/glow-container-(\S+)/)?.[1];
+			if (!identifier || identifier === 'glow-container') continue;
+
+			const cards = container.querySelectorAll<HTMLDivElement>(`.glow-card-${identifier}`);
+
+			const CONFIG = {
+				proximity: 40,
+				spread: 80,
+				blur: 12,
+				gap: 32,
+				vertical: false,
+				opacity: 0,
+			};
+
+			const update = (event?: PointerEvent) => {
+				for (const card of cards) {
+					const cardBounds = card.getBoundingClientRect();
+
+					const mouseX = event?.x || 0;
+					const mouseY = event?.y || 0;
+
+					if (
+						mouseX > cardBounds.left - CONFIG.proximity &&
+						mouseX < cardBounds.left + cardBounds.width + CONFIG.proximity &&
+						mouseY > cardBounds.top - CONFIG.proximity &&
+						mouseY < cardBounds.top + cardBounds.height + CONFIG.proximity
+					) {
+						card.style.setProperty('--active', '1');
+					} else {
+						card.style.setProperty('--active', `${CONFIG.opacity}`);
+					}
+
+					const cardCenter = [
+						cardBounds.left + cardBounds.width * 0.5,
+						cardBounds.top + cardBounds.height * 0.5,
+					];
+
+					let angle =
+						(Math.atan2(mouseY - cardCenter[1], mouseX - cardCenter[0]) * 180) / Math.PI;
+
+					angle = angle < 0 ? angle + 360 : angle;
+
+					card.style.setProperty('--start', `${angle + 90}`);
+				}
+			};
+
+			document.body.addEventListener('pointermove', update);
+
+			container.style.setProperty('--gap', `${CONFIG.gap}`);
+			container.style.setProperty('--blur', `${CONFIG.blur}`);
+			container.style.setProperty('--spread', `${CONFIG.spread}`);
+			container.style.setProperty('--direction', CONFIG.vertical ? 'column' : 'row');
+
+			update();
+		}
+	}
+
+	// Initialize on page load
+	initGlowCards();
+
+	// Re-initialize on Astro view transitions
+	document.addEventListener('astro:after-swap', initGlowCards);
+</script>

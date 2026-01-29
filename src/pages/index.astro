@@ -1,9 +1,33 @@
 ---
-import MainGridLayout from "../layouts/MainGridLayout.astro";
+import AboutSection from "@components/portfolio/AboutSection.astro";
+import ContactSection from "@components/portfolio/ContactSection.astro";
+import ExperienceSection from "@components/portfolio/ExperienceSection.astro";
+import HeroSection from "@components/portfolio/HeroSection.astro";
+import ProjectsSection from "@components/portfolio/ProjectsSection.astro";
+import SkillsSection from "@components/portfolio/SkillsSection.astro";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
 ---
 
+
 <MainGridLayout showSidebar={false}>
-  <div class="min-h-[50vh] flex items-center justify-center">
-    <h1 class="text-4xl font-bold">HOLA MUNDO</h1>
+  <div class="min-h-[50vh] px-4">
+    <!-- Hero Section -->
+    <HeroSection />
+    
+    <!-- About Section -->
+    <AboutSection />
+    
+    <!-- Experience Section -->
+    <ExperienceSection />
+    
+    <!-- Skills Section -->
+    <SkillsSection />
+    
+    <!-- Projects Section -->
+    <ProjectsSection />
+    
+    <!-- Contact Section -->
+    <ContactSection />
+    
   </div>
 </MainGridLayout>
