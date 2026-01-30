@@ -11,7 +11,7 @@ import { personalData } from "@/data/personal-data";
   </div>
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
     <div class="order-2 lg:order-1">
-      <p class="font-medium mb-5 text-cyan-400 text-xl uppercase">
+      <p class="font-medium mb-5 text-[var(--secondary)] text-xl uppercase">
         Who am I?
       </p>
       <div class="text-gray-200 text-sm lg:text-lg">
@@ -23,14 +23,14 @@ import { personalData } from "@/data/personal-data";
         ))}
       </div>
     </div>
-    <div class="flex justify-center order-1 lg:order-2 items-start">
+    <a class="flex justify-center order-1 lg:order-2 items-start" href="/about/">
       <img
         src={personalData.profile}
         width={280}
         height={280}
         alt={personalData.name}
-        class="rounded-lg transition-all duration-1000 grayscale hover:grayscale-0 hover:scale-110 cursor-pointer"
+        class="rounded-lg transition-all duration-500 grayscale hover:grayscale-0 hover:scale-110 cursor-pointer"
       />
-    </div>
+    </a>
   </div>
 </section>

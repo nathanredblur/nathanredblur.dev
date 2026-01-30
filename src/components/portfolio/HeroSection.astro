@@ -25,13 +25,13 @@ const socialIcons: Record<string, string> = {
 		<div class="flex flex-col items-start justify-center p-2 pb-20 md:pb-10 lg:pt-10 bg-black/80 backdrop-blur-sm rounded-lg">
 			<h1 class="text-3xl leading-10 text-white lg:text-[2.6rem] lg:leading-[3.5rem]">
 				This is
-				<span class="font-semibold text-pink-500">
+				<span class="font-semibold text-[var(--primary)]">
 					{" "}
 					{personalData.name}
 				</span>
 				,
 				<br />
-				<span class="text-cyan-400">{personalData.designation}</span>.
+				<span class="text-[var(--secondary)]">{personalData.designation}</span>.
 			</h1>
 
 			{/* Social Links */}
@@ -43,7 +43,7 @@ const socialIcons: Record<string, string> = {
 							href={value}
 							target="_blank"
 							rel="noopener noreferrer"
-							class="transition-all duration-300 hover:scale-125 text-pink-500 hover:text-pink-400"
+							class="transition-all duration-300 hover:scale-125 text-[var(--primary)] hover:text-pink-400"
 							aria-label={key}
 						>
 							<Icon name={socialIcons[key]} class="text-[1.875rem]" />
@@ -85,9 +85,9 @@ const socialIcons: Record<string, string> = {
 			<WindowBox>
 				<code class="font-mono text-xs md:text-sm lg:text-base">
 					<div class="blink">
-						<span class="mr-2 text-pink-500">const</span>
+						<span class="mr-2 text-[var(--primary)]">const</span>
 						<span class="mr-2 text-white">coder</span>
-						<span class="mr-2 text-pink-500">=</span>
+						<span class="mr-2 text-[var(--primary)]">=</span>
 						<span class="text-gray-400">{"{"}</span>
 					</div>
 					<div>

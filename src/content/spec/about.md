@@ -1,85 +1,100 @@
-# About Me
+# Beyond Code
 
-Hi, I'm **Jonathan Rico** (Nathan), a dynamic front-end developer with a keen eye for user-centric design. With a solid foundation in frameworks like React, Redux, and Next.js, I bring over a decade of hands-on experience in the evolving landscape of web development.
-
-I've actively contributed to large-scale projects, leveraging a data-driven approach and collaborating with UX designers to architect optimal front-end solutions. Mentoring new developers is not just a task, it's a passion that fuels my commitment to continuous learning.
-
-**Let's innovate together!**
+I'm endlessly curious and love experimenting with software, hardware, and learning about new things. This page is a glimpse into who I am when I'm not writing code.
 
 ---
 
-## Beyond Code
+## Music
 
-I'm endlessly curious and love experimenting with software, hardware, and learning about new things. When I'm not coding, you'll find me:
+My taste in music is all over the place — I enjoy everything from electronic and synthwave to rock, alternative, and video game soundtracks. Some artists/bands I keep coming back to:
 
-- 🎮 **Playing indie games** — I appreciate unique mechanics and art styles
-- 🎵 **Listening to music** — Eclectic taste, always discovering new artists
-- 📺 **Watching anime** — Both classics and seasonal picks
-- 🌆 **Appreciating Y2K & retro-futuristic aesthetics** — That early 2000s tech optimism hits different
+- **Daft Punk** — Pioneers of electronic music. *Discovery* is a masterpiece.
+- **Yoko Kanno** — Her work with The Seatbelts on Cowboy Bebop is legendary, and her anime OSTs in general are incredible.
+- **Radiohead** — Always pushing boundaries.
+- **The Killers** — Rock anthems that never get old.
+- **Tame Impala** — Psychedelic rock meets electronic production.
+- **Nujabes** — The godfather of lo-fi hip hop.
 
-### My Setup
+I also have a deep appreciation for video game soundtracks — games like Hyper Light Drifter and Bastion have music that stands on its own as great art.
 
-I work on a **Mac mini M1** and **MacBook Pro M4**, using **Cursor** as my main editor with **Claude** as my AI assistant. I'm a macOS power user who loves CLI tools and automation — you can see my curated app collection at [MacSnap](https://macsnap.nathanredblur.dev/).
-
----
-
-## Skills
-
-### Technical Skills
-
-React | Next.js | TypeScript | JavaScript | Tailwind CSS | HTML | CSS | Git | Figma | Sketch
-
-### Soft Skills
-
-Communication | Collaboration | Creative Problem Solving | Critical Thinking | Time Management | Team Leadership
+If you have a band or artist to share, hit me up!
 
 ---
 
-## Experience
+## Gaming
 
-### Senior React Developer @ Getaround
+I'm a lifelong gamer with a soft spot for indie titles that experiment with unique mechanics and art styles. I gravitate toward **platformers, puzzle games, and hidden object adventures**.
 
-**May 2022 - Feb 2024**
+### Favorites
 
-I led the development of new product features from start to finish, including conception, research, documentation, maintenance, and refinement. I also contributed to key initiatives to enhance system elegance and productivity, focusing on streamlining processes and internal tools. Over time, I took ownership of part of the codebase, adhering to standards and best practices while driving its growth. Additionally, I conducted peer code reviews, contributed to our design system, and collaborated on product vision and software design decisions.
+- **The Legend of Zelda: Breath of the Wild** — I've sunk countless hours into this one. Open-world exploration at its finest.
+- **Hollow Knight** — Metroidvania perfection. The atmosphere, art, and challenge are incredible.
+- **Hyper Light Drifter** — Challenging gameplay with an absolutely stunning soundtrack.
+- **Ori and the Blind Forest / Will of the Wisps** — Visually breathtaking platformers.
+- **Bastion** — Great music, great story, great gameplay.
+- **Dead Cells** — Roguelike with tight combat that keeps me coming back.
+- **Dave the Diver** — A delightful mix of diving exploration and restaurant management.
+- **Fez** — Addictive and clever puzzle platformer.
+- **It Takes Two** — The perfect co-op experience to play with your partner.
+- **Abzu & Journey** — Games that soothe the soul with their beautiful landscapes and atmosphere.
 
-### Senior React Developer @ AirTm
+...and many others. Always open to recommendations!
 
-**Jan 2021 - May 2022**
+### Platforms
 
-Front-end development for a financial services application that relies on a cryptocurrency backend.
-
-### Front-end Manager @ AllTheRooms
-
-**Jun 2013 - Jan 2021**
-
-I was the lead front-end developer for a travel metasearch product with a cutting-edge front-end that became a touchstone throughout the travel industry. Started in Angular and successfully migrated to React/Redux. I developed the front end for a self-service B2B analytics product, using React, Next.js, GraphQL and Apollo client. My responsibilities included UX design.
-
-### Front-End Developer @ Victory Productions
-
-**Dec 2010 - Jun 2013**
-
-Develop a complex front-end application for an e-learning product, using web frameworks like Angular and Backbone.
-
-### Front-end Developer @ PRAGMA
-
-**Feb 2009 - Dec 2010**
-
-Develop sites in Adobe Flash and HTML/CSS.
-
-### Front-end Developer @ Various Companies
-
-**Jul 2005 - Feb 2009**
-
-Creating engaging interactive games with Adobe Flash and ActionScript for ITM University's online education platform. Experienced Entrepreneur and Tech Lead specializing in creating custom WordPress templates and plugins for Joomla, ELGG, and Moodle platforms. Skilled in leading teams and delivering innovative solutions to drive business growth.
+For Nintendo exclusives like **Mario Kart** and **Zelda**, I play on the **Switch**. For everything else, I prefer **Steam** — I love the versatility of PC gaming and the indie scene there.
 
 ---
 
-## Contact
+## Anime & Animation
 
-- 📧 Email: nathanredblur@duck.com
-- 🔗 LinkedIn: [nathanredblur](https://www.linkedin.com/in/nathanredblur/)
-- 🐙 GitHub: [nathanredblur](https://github.com/nathanredblur)
-- 🐦 Twitter: [@NathanRedBlur](https://twitter.com/NathanRedBlur)
+I've been watching anime since I was a kid, and it's still one of my favorite forms of storytelling. I also love western animation with strong storytelling and unique art styles.
+
+### Anime Favorites
+
+- **Cowboy Bebop** — The perfect blend of action, music, and melancholy.
+- **Fullmetal Alchemist: Brotherhood** — Epic storytelling with great characters.
+- **Frieren: Beyond Journey's End** — A beautiful meditation on time, memory, and connection.
+- **Kaguya-sama: Love is War** — Romantic comedy genius.
+- **Jujutsu Kaisen** — Great action and characters.
+- **Chainsaw Man** — Unique, chaotic, and visually stunning.
+- **My Hero Academia** — Classic shonen done right.
+- **Bocchi the Rock!** — Relatable and hilarious.
+
+### Western Animation
+
+- **Primal** — Genndy Tartakovsky's masterpiece. Brutal, emotional, and wordless.
+- **Adventure Time** — Deceptively deep worldbuilding and heartfelt moments.
+- **Steven Universe** — Beautiful music and emotional storytelling.
+- **Gravity Falls** — Mystery, humor, and heart.
+- **Over the Garden Wall** — A hauntingly beautiful miniseries.
+- **Batman: The Animated Series & DC animated films** — Some of the best Batman adaptations ever made.
+
+---
+
+## Aesthetics & Interests
+
+I have a deep appreciation for **Y2K and retro-futuristic aesthetics** — that early 2000s tech optimism with its translucent plastics, vibrant colors, and bold design choices. There's something nostalgic yet forward-looking about that era.
+
+I'm also fascinated by:
+
+- **Mechanical keyboards** — Currently using a custom build.
+- **UI/UX design** — Clean interfaces and thoughtful interactions.
+- **Productivity tools** — Always optimizing my workflow.
+- **Coffee** — Essential fuel for coding sessions.
+
+---
+
+## My Setup
+
+I work on a **Mac mini M1** and **MacBook Pro M4**, using **Cursor** as my main editor with **Claude** as my AI assistant. I'm a macOS power user who loves CLI tools and automation.
+
+Check out my curated app collection at [MacSnap](https://macsnap.nathanredblur.dev/) — it's a snapshot of the tools I use daily.
+
+---
+
+## Let's Connect
+
+Want to chat about music, games, anime, or anything else? Feel free to reach out through any of the links on the [home page](/).
 
 ::github{repo="nathanredblur/nathanredblur.dev"}
