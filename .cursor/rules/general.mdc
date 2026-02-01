@@ -913,6 +913,19 @@ pnpm lint:unused
 5. Remove or mark unused exports as internal
 6. Run `pnpm lint:unused` again to verify cleanup
 
+## Internal Links (Astro)
+
+**CRITICAL**: All internal links MUST end with a trailing slash (`/`).
+
+```markdown
+✅ [Link text](/posts/my-post-slug/)
+✅ [Link text](/about/)
+❌ [Link text](/posts/my-post-slug)
+❌ [Link text](/about)
+```
+
+**Why?** Astro generates directories for each page. Without the trailing slash, some servers may redirect or fail to resolve the URL correctly.
+
 ## Before Each Change Checklist
 
 1. [ ] Read `package.json` - identify framework (Astro vs Vite)
@@ -929,3 +942,4 @@ pnpm lint:unused
 12. [ ] **Do NOT create documentation** unless explicitly requested
 13. [ ] Use English only
 14. [ ] Use PNPM only (never npm or yarn)
+15. [ ] **Internal links MUST end with trailing slash** (`/`)

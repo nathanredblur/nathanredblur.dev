@@ -449,6 +449,30 @@ brew install gallery-dl
 
 ---
 
+## Internal Links
+
+**CRITICAL**: All internal links MUST end with a trailing slash (`/`).
+
+### Correct Format
+
+```markdown
+✅ [Link text](/posts/my-post-slug/)
+✅ [Link text](/about/)
+✅ [Link text](/tags/css/)
+```
+
+### Incorrect Format
+
+```markdown
+❌ [Link text](/posts/my-post-slug)
+❌ [Link text](/about)
+❌ [Link text](/tags/css)
+```
+
+**Why?** Astro generates directories for each page. Without the trailing slash, some servers may redirect or fail to resolve the URL correctly. The trailing slash ensures consistent routing.
+
+---
+
 ## Language
 
 - **ALWAYS write posts in English**

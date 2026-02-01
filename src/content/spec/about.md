@@ -72,24 +72,26 @@ I've been watching anime since I was a kid, and it's still one of my favorite fo
 
 ---
 
-## Aesthetics & Interests
-
-I have a deep appreciation for **Y2K and retro-futuristic aesthetics** — that early 2000s tech optimism with its translucent plastics, vibrant colors, and bold design choices. There's something nostalgic yet forward-looking about that era.
-
-I'm also fascinated by:
-
-- **Mechanical keyboards** — Currently using a custom build.
-- **UI/UX design** — Clean interfaces and thoughtful interactions.
-- **Productivity tools** — Always optimizing my workflow.
-- **Coffee** — Essential fuel for coding sessions.
-
----
-
 ## My Setup
 
-I work on a **Mac mini M1** and **MacBook Pro M4**, using **Cursor** as my main editor with **Claude** as my AI assistant. I'm a macOS power user who loves CLI tools and automation.
+I'm a macOS power user who loves CLI tools and automation. Here's what I work with:
 
-Check out my curated app collection at [MacSnap](https://macsnap.nathanredblur.dev/) — it's a snapshot of the tools I use daily.
+### Computers
+
+- **Mac mini M1** — My main workstation for development.
+- **MacBook Pro M4** — For mobility and working from anywhere.
+- **ZimaCube** — Private cloud for self-hosting and Docker experiments.
+- **Gaming PC** — *Details coming soon...*
+
+### Peripherals
+
+- **Dell U3821DW** — 37.5" ultrawide monitor. The extra screen real estate is a game changer.
+- **Skyloong GK104 Pro** — Mechanical keyboard.
+- **Logitech G102** — Simple and reliable mouse.
+
+### Software
+
+I use **Cursor** as my main editor with **Claude** as my AI assistant. Check out my curated app collection at [MacSnap](https://macsnap.nathanredblur.dev/) — it's a snapshot of the tools I use daily.
 
 ---
 
