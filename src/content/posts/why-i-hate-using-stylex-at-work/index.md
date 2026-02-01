@@ -5,7 +5,7 @@ description: "I use StyleX daily at my job. Here's why I think it's over-enginee
 image: "./cover.png"
 tags: [CSS, StyleX, Web Development, Opinion]
 category: Development
-draft: true
+draft: false
 ---
 
 I use StyleX every day at work. And I hate it.

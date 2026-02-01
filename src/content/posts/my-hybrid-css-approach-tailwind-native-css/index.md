@@ -5,7 +5,7 @@ description: "I used to hate Tailwind. Now I use it for 80% of my styling—but 
 image: "./cover.png"
 tags: [CSS, Tailwind, Web Development]
 category: Development
-draft: true
+draft: false
 ---
 
 I used to hate Tailwind.
