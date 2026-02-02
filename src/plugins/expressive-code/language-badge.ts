@@ -6,7 +6,8 @@ import { definePlugin } from "@expressive-code/core";
 export function pluginLanguageBadge() {
 	return definePlugin({
 		name: "Language Badge",
-		// @ts-expect-error
+		// biome-ignore lint/suspicious/noTsIgnore: we need to ignore this line because expressive-code's types are not up to date
+		// @ts-ignore
 		baseStyles: ({ _cssVar }) => `
       [data-language]::before {
         position: absolute;

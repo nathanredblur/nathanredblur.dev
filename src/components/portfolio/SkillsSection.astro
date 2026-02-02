@@ -33,7 +33,7 @@ const skillsRow1 = [...skillsData, ...skillsData];
 	<!-- Marquee Row 1 - Left direction -->
 	<div class="marquee-container my-12">
 		<div class="marquee marquee-left">
-			{skillsRow1.map((skill, index) => {
+			{skillsRow1.map((skill) => {
 				const iconUrl = skillIcons[skill];
 				return (
 					<div class="w-36 min-w-fit h-fit flex flex-col items-center justify-center transition-all duration-500 m-3 sm:m-5 rounded-lg relative hover:scale-110 cursor-pointer">
