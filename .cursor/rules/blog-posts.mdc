@@ -265,8 +265,13 @@ Create an outline following this proven architecture:
 - Where to include images, graphics, screenshots
 - Infographic suggestions for complex concepts
 - Code examples with proper highlighting
+- **Show examples when possible**: Images, screenshots, or output samples make explanations concrete
 
-#### 5. Powerful Closing
+#### 5. Full Resources
+
+- **Include complete resources when sharing them**: If providing prompts, code, configs, or commands — include the full version in code blocks so readers can copy and use them directly
+
+#### 6. Powerful Closing
 
 - Summary in 2-3 key points
 - Specific call-to-action
@@ -302,18 +307,30 @@ Ensure content includes:
 - **Conversational but professional**: Like explaining to a smart friend
 - **Direct and actionable**: Get to the point quickly
 - **Confident but humble**: Share expertise without being condescending
-- **Enthusiastic but not hype-y**: Show genuine interest in the topic
+- **Avoid unnecessary exaggerations**: Skip words like "chaos", "disaster", "game-changer" when they don't add value. Be matter-of-fact.
+- **Describe, don't hype**: Instead of "this is amazing!", explain *what* you like about it and *why*
 - **Use "you" language**: Address the reader directly
+
+### Framing (Context-Dependent)
+
+Choose the right opening based on article type:
+
+- **Credibility-first**: Start with external authority ("Every developer needs...") when building trust with readers who don't know you yet
+- **Personal-first**: Start with your perspective ("I wanted...") when sharing opinions, experiences, or making the blog feel intimate
+
+Both are valid — pick based on what the article needs.
 
 ### Formatting Rules
 
 - Paragraphs: 2-4 lines maximum
 - Sentences: Max 20 words average
 - Headers: Should tell a story on their own when scanned
-- Lists: Use for 3+ related items
+- Lists: Great for clear, concise points. Less necessary in personal/narrative articles where flow matters more.
 - Code: Always with syntax highlighting and context
 - Bold: Key concepts and important terms
 - Links: Descriptive anchor text (not "click here")
+- **Keep it concise**: Don't pad for word count. If it can be said in fewer words, do it.
+- **Invite rather than instruct**: Questions engage better than commands (especially at the end)
 
 ---
 
