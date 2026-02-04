@@ -35,7 +35,7 @@ const identifier = `experience-${experience.company.split(" ")[0]}`;
 				<div class="p-3">
 					<div class="flex items-center gap-x-8">
 						<div class="text-violet-500 transition-all duration-300 hover:scale-125">
-							<Icon name={icons[experience.type as keyof typeof icons]} class="text-[1.875rem]" />
+							<Icon name={icons[experience.type as keyof typeof icons] || "fa6-solid:laptop-code"} class="text-[1.875rem]" />
 						</div>
 						<div>
 							<p class="text-base sm:text-xl mb-2 font-medium text-[var(--primary)]">
@@ -55,7 +55,7 @@ const identifier = `experience-${experience.company.split(" ")[0]}`;
 			</summary>
 			
 			<!-- Expandable content -->
-			<div class="px-6 pb-6 pt-0 text-sm sm:text-base text-gray-300">
+			<div class="p-6 text-sm sm:text-base text-gray-300">
 				{experience.description}
 			</div>
 		</details>

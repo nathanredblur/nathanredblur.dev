@@ -1,0 +1,75 @@
+---
+import BackToTop from "@components/control/BackToTop.astro";
+import PortfolioFooter from "@components/portfolio/PortfolioFooter.astro";
+import PortfolioNavbar from "@components/portfolio/PortfolioNavbar.astro";
+import { personalData } from "@/data/personal-data";
+import Layout from "./Layout.astro";
+import "../styles/portfolio.css";
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = personalData.pageTitle,
+	description = personalData.pageDescription,
+} = Astro.props;
+---
+
+<Layout title={title} description={description}>
+  <slot slot="head" name="head" />
+
+  <!-- Portfolio Navbar -->
+  <PortfolioNavbar />
+
+  <!-- Main Content -->
+  <div class="min-h-screen portfolio-bg pt-16 lg:pt-20">
+    <!-- Background Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      <!-- Grid Pattern -->
+      <div
+        class="absolute inset-0 bg-[linear-gradient(to_right,#1f223c_1px,transparent_1px),linear-gradient(to_bottom,#1f223c_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-20"
+      >
+      </div>
+      <!-- Gradient Orbs -->
+      <div
+        class="absolute top-0 left-1/4 w-96 h-96 bg-violet-500/20 rounded-full filter blur-[128px]"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-500/20 rounded-full filter blur-[128px]"
+      >
+      </div>
+    </div>
+
+    <!-- Content Container -->
+    <main
+      id="swup-container"
+      class="relative z-10 max-w-[var(--page-width)] mx-auto px-4 transition-swup-fade"
+    >
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <PortfolioFooter />
+
+    <!-- Back to Top -->
+    <BackToTop />
+  </div>
+
+  <!-- TOC placeholder for swup compatibility -->
+  <div id="toc" class="hidden"></div>
+</Layout>
+
+<style>
+  /* Ensure dark background for portfolio */
+  :global(body) {
+    background-color: #0d1224;
+  }
+
+  /* Override any light mode styles for portfolio */
+  :global(.portfolio-bg) {
+    background-color: #0d1224 !important;
+  }
+</style>

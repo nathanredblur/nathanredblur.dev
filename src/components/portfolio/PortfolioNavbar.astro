@@ -1,0 +1,246 @@
+---
+import { Icon } from "astro-icon/components";
+import { personalData } from "@/data/personal-data";
+import { navBarConfig, siteConfig } from "../../config";
+import { LinkPresets } from "../../constants/link-presets";
+import { LinkPreset, type NavBarLink } from "../../types/config";
+import { url } from "../../utils/url-utils";
+import LightDarkSwitch from "../LightDarkSwitch.svelte";
+import Search from "../Search.svelte";
+import DisplaySettings from "../widget/DisplaySettings.svelte";
+import NavMenuPanel from "../widget/NavMenuPanel.astro";
+
+const className = Astro.props.class;
+
+// Check if light/dark mode is fixed in config
+const isLightDarkFixed = siteConfig.themeColor.lightDark !== undefined;
+
+let links: NavBarLink[] = navBarConfig.links.map(
+	(item: NavBarLink | LinkPreset): NavBarLink => {
+		if (typeof item === "number") {
+			return LinkPresets[item];
+		}
+		return item;
+	},
+);
+
+// Portfolio navigation items
+const portfolioLinks = [
+	{ name: "About", href: "#about" },
+	{ name: "Experience", href: "#experience" },
+	{ name: "Skills", href: "#skills" },
+	{ name: "Projects", href: "#projects" },
+	{ name: "Contact", href: "#contact" },
+];
+---
+
+<div id="portfolio-navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <div class="max-w-[var(--page-width)] mx-auto px-4">
+    <nav class="flex items-center justify-between h-16 lg:h-20">
+      <!-- Logo/Name -->
+      <a
+        href={url("/")}
+        class="flex items-center gap-2 text-white font-bold text-lg lg:text-xl hover:text-pink-500 transition-colors"
+      >
+        <span class="text-pink-500">&lt;</span>
+        <span>{personalData.name.split(" ")[0]}</span>
+        <span class="text-pink-500">/&gt;</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-1">
+        {
+          portfolioLinks.map((link) => (
+            <a
+              href={link.href}
+              class="px-4 py-2 text-gray-300 hover:text-pink-500 transition-colors text-sm font-medium uppercase tracking-wider"
+            >
+              {link.name}
+            </a>
+          ))
+        }
+        <span class="w-px h-6 bg-gray-700 mx-2"></span>
+        {
+          links.map((l) => (
+            <a
+              aria-label={l.name}
+              href={l.external ? l.url : url(l.url)}
+              target={l.external ? "_blank" : null}
+              class="px-4 py-2 text-gray-300 hover:text-violet-400 transition-colors text-sm font-medium"
+            >
+              <div class="flex items-center">
+                {l.name}
+                {l.external && (
+                  <Icon
+                    name="fa6-solid:arrow-up-right-from-square"
+                    class="text-[0.75rem] ml-1 opacity-50"
+                  />
+                )}
+              </div>
+            </a>
+          ))
+        }
+      </div>
+
+      <!-- Right Side Actions -->
+      <div class="flex items-center gap-2">
+        <Search client:only="svelte" />
+        {
+          !siteConfig.themeColor.fixed && (
+            <button
+              aria-label="Display Settings"
+              class="p-2 text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-white/10"
+              id="display-settings-switch"
+            >
+              <Icon name="material-symbols:palette-outline" class="text-xl" />
+            </button>
+          )
+        }
+        {!isLightDarkFixed && <LightDarkSwitch client:only="svelte" />}
+
+        <!-- Mobile Menu Button -->
+        <button
+          aria-label="Menu"
+          class="lg:hidden p-2 text-gray-300 hover:text-white transition-colors rounded-lg hover:bg-white/10"
+          id="nav-menu-switch"
+        >
+          <Icon name="material-symbols:menu-rounded" class="text-xl" />
+        </button>
+      </div>
+
+      <NavMenuPanel links={links} />
+      <DisplaySettings client:only="svelte" />
+    </nav>
+  </div>
+</div>
+
+<script>
+  // Navbar scroll effect
+  function initNavbarScroll() {
+    const navbar = document.getElementById("portfolio-navbar");
+    if (!navbar) return;
+
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add("bg-[#0d1224]/90", "backdrop-blur-md", "shadow-lg");
+      } else {
+        navbar.classList.remove("bg-[#0d1224]/90", "backdrop-blur-md", "shadow-lg");
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial check
+  }
+
+  // Theme switching
+  function switchTheme() {
+    if (localStorage.theme === "dark") {
+      document.documentElement.classList.remove("dark");
+      localStorage.theme = "light";
+    } else {
+      document.documentElement.classList.add("dark");
+      localStorage.theme = "dark";
+    }
+  }
+
+  function loadButtonScript() {
+    let switchBtn = document.getElementById("scheme-switch");
+    if (switchBtn) {
+      switchBtn.onclick = function () {
+        switchTheme();
+      };
+    }
+
+    let settingBtn = document.getElementById("display-settings-switch");
+    if (settingBtn) {
+      settingBtn.onclick = function () {
+        let settingPanel = document.getElementById("display-setting");
+        if (settingPanel) {
+          settingPanel.classList.toggle("float-panel-closed");
+        }
+      };
+    }
+
+    let menuBtn = document.getElementById("nav-menu-switch");
+    if (menuBtn) {
+      menuBtn.onclick = function () {
+        let menuPanel = document.getElementById("nav-menu-panel");
+        if (menuPanel) {
+          menuPanel.classList.toggle("float-panel-closed");
+        }
+      };
+    }
+  }
+
+  // Smooth scroll for anchor links
+  function initSmoothScroll() {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const target = document.querySelector(
+          (this as HTMLAnchorElement).getAttribute("href") || ""
+        );
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      });
+    });
+  }
+
+  // Initialize all
+  initNavbarScroll();
+  loadButtonScript();
+  initSmoothScroll();
+
+  // Re-initialize on page transitions (for swup)
+  document.addEventListener("swup:contentReplaced", () => {
+    initNavbarScroll();
+    loadButtonScript();
+    initSmoothScroll();
+  });
+</script>
+
+{
+  import.meta.env.PROD && (
+    <script is:inline define:vars={{ scriptUrl: url("/pagefind/pagefind.js") }}>
+      async function loadPagefind() {
+        try {
+          const response = await fetch(scriptUrl, { method: "HEAD" });
+          if (!response.ok) {
+            throw new Error(`Pagefind script not found: ${response.status}`);
+          }
+
+          const pagefind = await import(scriptUrl);
+
+          await pagefind.options({
+            excerptLength: 20,
+          });
+
+          window.pagefind = pagefind;
+
+          document.dispatchEvent(new CustomEvent("pagefindready"));
+          console.log(
+            "Pagefind loaded and initialized successfully, event dispatched."
+          );
+        } catch (error) {
+          console.error("Failed to load Pagefind:", error);
+          window.pagefind = {
+            search: () => Promise.resolve({ results: [] }),
+            options: () => Promise.resolve(),
+          };
+          document.dispatchEvent(new CustomEvent("pagefindloaderror"));
+          console.log("Pagefind load error, event dispatched.");
+        }
+      }
+
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", loadPagefind);
+      } else {
+        loadPagefind();
+      }
+    </script>
+  )
+}

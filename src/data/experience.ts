@@ -1,12 +1,36 @@
 export interface Experience {
 	title: string;
 	company: string;
-	type?: "React" | "Manager" | "Developer";
+	type?: "React" | "Manager" | "Developer" | "Full-time" | "Freelance";
 	duration: string;
 	description: string;
 }
 
 export const experiences: Experience[] = [
+	{
+		title: "Senior Frontend Engineer",
+		company: "Parser",
+		type: "Full-time",
+		duration: "May 2025 - Present",
+		description:
+			"Developing mission-critical banking applications serving millions in the financial services sector. Leading accessibility initiatives to achieve WCAG 2.1 AA compliance while building modern React/TypeScript interfaces. Pioneering AI-assisted development with Claude 4.5, GPT 5.2, and Cursor to accelerate code quality, architectural decisions, and automated reviews. Maintaining excellence through Jest, React Testing Library, and Playwright testing.",
+	},
+	{
+		title: "Senior Software Engineer",
+		company: "EPAM Systems",
+		type: "Full-time",
+		duration: "Sep 2024 - May 2025",
+		description:
+			"Built enterprise-grade supply chain and inventory management solutions for a top US retail giant. Architected React/TypeScript interfaces with Ant Design, integrated TanStack Query for seamless data flow, developed NodeJS/Nest backend endpoints with GraphQL in a BFF architecture, and ensured quality through comprehensive testing with Jest, Enzyme, React Testing Library, and Cypress.",
+	},
+	{
+		title: "Senior Frontend Developer",
+		company: "Terminal49",
+		type: "Freelance",
+		duration: "Jun 2024 - Sep 2024",
+		description:
+			"Elevated the digital presence of a leading logistics technology company. Optimized their NextJS website, crafted reusable components for Sanity CMS, boosted performance across platforms, enhanced EmberJs internal tools, and collaborated with marketing to strengthen SEO and web visibility.",
+	},
 	{
 		title: "Senior React Developer",
 		company: "Getaround",
