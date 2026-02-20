@@ -38,70 +38,8 @@ class="absolute top-0 -z-10"
 </section>
 
 <script>
-	function initGlowCards() {
-		const containers = document.querySelectorAll<HTMLDivElement>('.glow-container');
+	import { initGlowCards } from "@/scripts/glow-cards";
 
-		for (const container of containers) {
-			const identifier = container.className.match(/glow-container-(\S+)/)?.[1];
-			if (!identifier || identifier === 'glow-container') continue;
-
-			const cards = container.querySelectorAll<HTMLDivElement>(`.glow-card-${identifier}`);
-
-			const CONFIG = {
-				proximity: 40,
-				spread: 80,
-				blur: 12,
-				gap: 32,
-				vertical: false,
-				opacity: 0,
-			};
-
-			const update = (event?: PointerEvent) => {
-				for (const card of cards) {
-					const cardBounds = card.getBoundingClientRect();
-
-					const mouseX = event?.x || 0;
-					const mouseY = event?.y || 0;
-
-					if (
-						mouseX > cardBounds.left - CONFIG.proximity &&
-						mouseX < cardBounds.left + cardBounds.width + CONFIG.proximity &&
-						mouseY > cardBounds.top - CONFIG.proximity &&
-						mouseY < cardBounds.top + cardBounds.height + CONFIG.proximity
-					) {
-						card.style.setProperty('--active', '1');
-					} else {
-						card.style.setProperty('--active', `${CONFIG.opacity}`);
-					}
-
-					const cardCenter = [
-						cardBounds.left + cardBounds.width * 0.5,
-						cardBounds.top + cardBounds.height * 0.5,
-					];
-
-					let angle =
-						(Math.atan2(mouseY - cardCenter[1], mouseX - cardCenter[0]) * 180) / Math.PI;
-
-					angle = angle < 0 ? angle + 360 : angle;
-
-					card.style.setProperty('--start', `${angle + 90}`);
-				}
-			};
-
-			document.body.addEventListener('pointermove', update);
-
-			container.style.setProperty('--gap', `${CONFIG.gap}`);
-			container.style.setProperty('--blur', `${CONFIG.blur}`);
-			container.style.setProperty('--spread', `${CONFIG.spread}`);
-			container.style.setProperty('--direction', CONFIG.vertical ? 'column' : 'row');
-
-			update();
-		}
-	}
-
-	// Initialize on page load
 	initGlowCards();
-
-	// Re-initialize on Astro view transitions
-	document.addEventListener('astro:after-swap', initGlowCards);
+	document.addEventListener("astro:after-swap", initGlowCards);
 </script>
