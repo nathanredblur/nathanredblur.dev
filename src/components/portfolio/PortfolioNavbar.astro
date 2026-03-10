@@ -10,8 +10,6 @@ import Search from "../Search.svelte";
 import DisplaySettings from "../widget/DisplaySettings.svelte";
 import NavMenuPanel from "../widget/NavMenuPanel.astro";
 
-const className = Astro.props.class;
-
 // Check if light/dark mode is fixed in config
 const isLightDarkFixed = siteConfig.themeColor.lightDark !== undefined;
 
@@ -174,11 +172,11 @@ const portfolioLinks = [
 
   // Smooth scroll for anchor links
   function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-      anchor.addEventListener("click", function (e) {
+    document.querySelectorAll('a[href^="#"]').forEach((anchor: Element) => {
+      anchor.addEventListener("click", function (this: HTMLAnchorElement, e: Event) {
         e.preventDefault();
         const target = document.querySelector(
-          (this as HTMLAnchorElement).getAttribute("href") || ""
+          this.getAttribute("href") || ""
         );
         if (target) {
           target.scrollIntoView({

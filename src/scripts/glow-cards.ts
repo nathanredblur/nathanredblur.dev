@@ -11,14 +11,17 @@ let cleanup: (() => void) | null = null;
 export function initGlowCards() {
 	cleanup?.();
 
-	const containers = document.querySelectorAll<HTMLDivElement>(".glow-container");
+	const containers =
+		document.querySelectorAll<HTMLDivElement>(".glow-container");
 	const allCards: HTMLDivElement[] = [];
 
 	for (const container of containers) {
 		const identifier = container.className.match(/glow-container-(\S+)/)?.[1];
 		if (!identifier || identifier === "glow-container") continue;
 
-		const cards = container.querySelectorAll<HTMLDivElement>(`.glow-card-${identifier}`);
+		const cards = container.querySelectorAll<HTMLDivElement>(
+			`.glow-card-${identifier}`,
+		);
 		for (const card of cards) {
 			allCards.push(card);
 		}
@@ -61,7 +64,8 @@ export function initGlowCards() {
 
 				const centerX = rect.left + rect.width * 0.5;
 				const centerY = rect.top + rect.height * 0.5;
-				let angle = (Math.atan2(mouseY - centerY, mouseX - centerX) * 180) / Math.PI;
+				let angle =
+					(Math.atan2(mouseY - centerY, mouseX - centerX) * 180) / Math.PI;
 				if (angle < 0) angle += 360;
 
 				card.style.setProperty("--start", `${angle + 90}`);
