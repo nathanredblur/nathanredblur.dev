@@ -16,7 +16,7 @@ export const personalProjects: PersonalProject[] = [
 		github: "https://github.com/nathanredblur/osx-setup",
 		website: "https://macsnap.nathanredblur.dev/",
 		screenshot: "/images/mac-snap.gif",
-		status: "Code will be published soon",
+		status: "Updated regularly",
 		tools: ["TypeScript", "React", "Tailwind CSS", "Homebrew"],
 	},
 	{
@@ -26,7 +26,17 @@ export const personalProjects: PersonalProject[] = [
 		github: "https://github.com/nathanredblur/brutal-print",
 		website: "https://print.nathanredblur.dev/",
 		screenshot: "/images/brutal-print.gif",
-		status: "Will be online soon",
+		status: "Updated recently",
 		tools: ["Astro", "React", "TypeScript", "Fabric.js", "Web Bluetooth"],
+	},
+	{
+		title: "Pension Analyzer",
+		description:
+			"A web app that analyzes your Colpensiones contribution history and provides a complete diagnosis of your pension status, with projections and recommendations based on current Colombian regulations. 100% private — everything is processed in your browser.",
+		github: "https://github.com/nathanredblur/analizador-pension",
+		website: "https://pension.nathanredblur.dev/",
+		screenshot: "/images/analizador-pension.gif",
+		status: "Spanish only",
+		tools: ["TypeScript", "React", "Tailwind CSS", "PDF.js", "Recharts"],
 	},
 ];
