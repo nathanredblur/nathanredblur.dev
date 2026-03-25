@@ -19,12 +19,22 @@ pnpm cloudflare:deploy   # Deploy to Cloudflare Workers
 
 There are no unit tests — CI validates with `pnpm astro check` and `pnpm astro build`.
 
+## Conventions
+
+- **English only** for all code, comments, documentation, and commit messages
+- **pnpm only** — enforced via `preinstall` script; never use npm or yarn
+- **TypeScript** in all code files
+- **Biome** for linting and formatting: tabs for indentation, double quotes. Biome relaxes `useConst`, `useImportType`, `noUnusedVariables`, and `noUnusedImports` for `.svelte` and `.astro` files (framework limitations)
+- **Tailwind-only styling** — never use `<style>` tags or inline CSS
+- **No arbitrary color values** (e.g., `text-[#c7cfe6]`) — use theme CSS variables or Tailwind's color scale
+- **Internal links must end with trailing slash** — Astro generates directories per page (`/posts/my-slug/` not `/posts/my-slug`)
+
 ## Tech Stack
 
 - **Astro 5** — static site generator, deployed to Cloudflare Workers via `@astrojs/cloudflare`
 - **Svelte 5** — used for interactive components (search, theme toggle, archive panel, display settings)
-- **Tailwind CSS 3** — utility-first styling with dark mode (class-based)
-- **Biome** — linter and formatter (replaces ESLint + Prettier); uses tabs, double quotes
+- **Tailwind CSS 3** — utility-first styling with dark mode (class-based), using `@astrojs/tailwind` integration with nesting enabled
+- **Biome** — linter and formatter (replaces ESLint + Prettier)
 - **Expressive Code** — enhanced code blocks with custom plugins in `src/plugins/expressive-code/`
 - **Pagefind** — client-side full-text search, indexed at build time
 
@@ -59,15 +69,12 @@ Portfolio data (not blog content) lives in `src/data/`:
 
 ### Component Structure
 
-```
-src/components/
-├── control/      # Interactive UI controls
-├── misc/         # ImageWrapper, License, Markdown wrappers
-├── portfolio/    # Hero, About, Skills, Experience, Projects, Contact sections
-└── widget/       # Sidebar: Profile, Categories, Tags, TOC, Search, DisplaySettings
-```
+Astro components (`.astro`) are used for static content; Svelte components (`.svelte`) handle interactivity. There are no React/`.tsx` components — use Svelte for interactive islands.
 
-Astro components are used for static content; Svelte components handle interactivity.
+Astro client directives for Svelte components:
+- `client:visible` — preferred for most interactive components (lazy hydration)
+- `client:idle` — for components needed soon after page load (e.g., search)
+- `client:load` — only when immediately needed on page load
 
 ### Layouts
 
@@ -79,7 +86,7 @@ Astro components are used for static content; Svelte components handle interacti
 
 Remark plugins (pre-HTML): math parsing, GitHub admonitions → directives, custom directives, reading time calculation.
 Rehype plugins (post-HTML): KaTeX rendering, heading slugs + autolinks, custom component injection.
-Plugin config lives in `astro.config.mjs`. Custom Expressive Code plugins are in `src/plugins/expressive-code/`.
+Plugin config lives in `astro.config.mjs`. Custom plugins are in `src/plugins/`.
 
 ### Theming
 
@@ -88,8 +95,8 @@ Color theming uses CSS HSL variables. The hue value in `src/config.ts` controls 
 ### Path Aliases
 
 TypeScript path aliases defined in `tsconfig.json`:
-`@components/*`, `@assets/*`, `@utils/*`, `@layouts/*`, `@data/*`, `@icons/*`, `@i18n/*`
+`@components/*`, `@assets/*`, `@constants/*`, `@utils/*`, `@layouts/*`, `@i18n/*`, `@/*`
 
 ### Deployment
 
-The site deploys to Cloudflare Workers. The `@astrojs/cloudflare` adapter is configured in `astro.config.mjs`. CI (`.github/workflows/build.yml`) runs `pnpm astro check` and `pnpm astro build` on push/PR to main.
+The site deploys to Cloudflare Workers. The `@astrojs/cloudflare` adapter is configured in `astro.config.mjs`. CI (`.github/workflows/build.yml`) runs `pnpm astro check` and `pnpm astro build` on push/PR to main. A separate workflow (`.github/workflows/biome.yml`) runs Biome linting.
