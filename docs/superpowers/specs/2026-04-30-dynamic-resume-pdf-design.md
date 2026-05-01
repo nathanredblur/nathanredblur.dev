@@ -217,12 +217,12 @@ Updated:
 
 Rationale:
 - `build` is extended by prepending `pnpm generate-resume` — otherwise unchanged.
-- `cloudflare:deploy` is extended with `pnpm build &&` so local deploys cannot ship a stale or empty `dist/resume/`. Confirmed during spec review: `wrangler deploy` alone does not invoke a build, and deploys could otherwise miss the PDFs.
+- `cloudflare:deploy` is extended with `pnpm build &&` so local deploys cannot ship a stale or empty `dist/resume/`. Confirmed during spec review: `wrangler deploy` alone does not invoke a build — it just uploads the already-built `dist/` (the Cloudflare adapter places output there). Chaining `pnpm build &&` guarantees `dist/resume/*.pdf` exist before upload.
 - `astro check` is intentionally **not** added to `build` — that is a separate `pnpm check` step, already part of CI and the project's existing contract.
 
 #### CI
 
-`.github/workflows/build.yml` currently runs `pnpm astro check && pnpm astro build`. Changed to `pnpm check && pnpm build` so résumé generation runs on every push/PR.
+`.github/workflows/build.yml` currently runs `pnpm astro check && pnpm astro build`. Changed to `pnpm check && pnpm build`. This preserves the semantic contract (type-check gate + production build) while switching to the package.json script aliases so the generate-resume step is picked up automatically.
 
 #### Git
 
@@ -245,11 +245,14 @@ Hue-to-hex for Modern (concrete):
 
 ```ts
 // scripts/resume/theme.ts
-import { themeConfig } from "../../src/config";
+import { siteConfig } from "../../src/config";
 
-const hueToHex = (hue: number, saturation = 70, lightness = 50): string => {
-  // Standard HSL → RGB → hex conversion. saturation/lightness chosen to match
-  // the site's accent look on a white PDF background (legible, not washed).
+const hueToHex = (hue: number, saturation = 70, lightness = 45): string => {
+  // Standard HSL → RGB → hex conversion. S=70 / L=45 chosen for print legibility
+  // on white: saturated enough to read as an accent, dark enough to meet contrast
+  // when used for headings. The Modern PDF accent is print-legible and is NOT
+  // a pixel match of the site's on-screen accent (which uses different S/L via
+  // Tailwind/CSS variables for dark-mode UI).
   const s = saturation / 100;
   const l = lightness / 100;
   const c = (1 - Math.abs(2 * l - 1)) * s;
@@ -266,12 +269,14 @@ const hueToHex = (hue: number, saturation = 70, lightness = 50): string => {
   return `#${toByte(r1)}${toByte(g1)}${toByte(b1)}`;
 };
 
-export const modernAccent = hueToHex(themeConfig.colors.hue);
+export const modernAccent = hueToHex(siteConfig.themeColor.hue);
 ```
+
+Note the correct import path: `siteConfig.themeColor.hue` (not `themeConfig.colors.hue`) — per `src/config.ts:10,14-15`.
 
 Fonts (committed under `scripts/resume/fonts/`):
 
-- **Roboto-Regular.ttf, Roboto-Bold.ttf, Roboto-Italic.ttf** — Apache 2.0, sourced from the existing `@fontsource/roboto` package files at install time or Google Fonts. A short README under `scripts/resume/fonts/` attributes license.
+- **Roboto-Regular.ttf, Roboto-Bold.ttf, Roboto-Italic.ttf** — Apache 2.0, downloaded directly from Google Fonts (<https://fonts.google.com/specimen/Roboto>) as TTFs. The `@fontsource/roboto` package already installed ships only `.woff`/`.woff2`, which react-pdf (via pdfkit) cannot load — `Font.register` requires `.ttf` or `.otf`. A short README under `scripts/resume/fonts/` records the source URL and license.
 - ATS template uses built-in Helvetica (no file needed).
 
 ## 4. Data migration
