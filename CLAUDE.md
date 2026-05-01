@@ -25,7 +25,7 @@ There are no unit tests — CI validates with `pnpm check` and `pnpm build`.
 - **English only** for all code, comments, documentation, and commit messages
 - **pnpm only** — enforced via `preinstall` script; never use npm or yarn
 - **TypeScript** in all code files
-- **Biome** for linting and formatting: tabs for indentation, double quotes. Biome relaxes `useConst`, `useImportType`, `noUnusedVariables`, and `noUnusedImports` for `.svelte` and `.astro` files (framework limitations)
+- **Biome** for linting and formatting: 2 spaces for indentation, double quotes. Biome relaxes `useConst`, `useImportType`, `noUnusedVariables`, and `noUnusedImports` for `.svelte` and `.astro` files (framework limitations). CSS files are also formatted by Biome with `tailwindDirectives` parsing enabled
 - **Tailwind-only styling** — never use `<style>` tags or inline CSS
 - **No arbitrary color values** (e.g., `text-[#c7cfe6]`) — use theme CSS variables or Tailwind's color scale
 - **Internal links must end with trailing slash** — Astro generates directories per page (`/posts/my-slug/` not `/posts/my-slug`)

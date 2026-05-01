@@ -6,13 +6,13 @@ import { personalData } from "@/data/personal-data";
 import Layout from "./Layout.astro";
 
 interface Props {
-	title?: string;
-	description?: string;
+  title?: string;
+  description?: string;
 }
 
 const {
-	title = personalData.pageTitle,
-	description = personalData.pageDescription,
+  title = personalData.pageTitle,
+  description = personalData.pageDescription,
 } = Astro.props;
 ---
 

@@ -14,21 +14,21 @@ import NavMenuPanel from "../widget/NavMenuPanel.astro";
 const isLightDarkFixed = siteConfig.themeColor.lightDark !== undefined;
 
 let links: NavBarLink[] = navBarConfig.links.map(
-	(item: NavBarLink | LinkPreset): NavBarLink => {
-		if (typeof item === "number") {
-			return LinkPresets[item];
-		}
-		return item;
-	},
+  (item: NavBarLink | LinkPreset): NavBarLink => {
+    if (typeof item === "number") {
+      return LinkPresets[item];
+    }
+    return item;
+  },
 );
 
 // Portfolio navigation items
 const portfolioLinks = [
-	{ name: "About", href: "#about" },
-	{ name: "Experience", href: "#experience" },
-	{ name: "Skills", href: "#skills" },
-	{ name: "Projects", href: "#projects" },
-	{ name: "Contact", href: "#contact" },
+  { name: "About", href: "#about" },
+  { name: "Experience", href: "#experience" },
+  { name: "Skills", href: "#skills" },
+  { name: "Projects", href: "#projects" },
+  { name: "Contact", href: "#contact" },
 ];
 ---
 
