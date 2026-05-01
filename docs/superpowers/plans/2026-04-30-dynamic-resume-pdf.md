@@ -23,6 +23,26 @@
 
 Establishes the source of truth for résumé content in `src/data/`. Every later chunk depends on this.
 
+### Task 0: Confirm you are on the feature branch
+
+**Files:** (none)
+
+- [ ] **Step 1: Verify current branch**
+
+```sh
+git branch --show-current
+```
+
+Expected: `feat/dynamic-resume-pdf`. If it prints `main` (or any other branch), switch:
+
+```sh
+git checkout -b feat/dynamic-resume-pdf
+```
+
+This plan was written assuming the branch already exists (created during brainstorming). Never commit the tasks below on `main`.
+
+---
+
 ### Task 1: Rename `description` → `webDescription` and extend `Experience` interface
 
 **Files:**
@@ -450,7 +470,7 @@ export const resumeProfile = {
 	email: "jon.nathan.rich@gmail.com",
 	website: "https://nathanredblur.dev/",
 	linkedin: "linkedin.com/in/nathanredblur",
-	photo: "/photo.webp",
+	photo: "/photo.jpeg",
 	softSkills: [
 		"Communication",
 		"Collaboration",
@@ -476,6 +496,8 @@ pnpm check
 git add src/data/resume-profile.ts
 git commit -m "feat(data): add resume-specific profile data"
 ```
+
+Note on photo format: `@react-pdf/renderer` (via pdfkit) supports **PNG and JPEG only** — not WebP. `public/photo.jpeg` exists and is the correct source. `public/photo.webp` is for the site only.
 
 ---
 
@@ -537,15 +559,15 @@ git commit -m "chore(deps): add @react-pdf/renderer, react, react-dom, tsx as de
 mkdir -p scripts/resume/fonts
 ```
 
-- [ ] **Step 2: Download the three TTFs from Google Fonts**
+- [ ] **Step 2: Download the three TTFs**
+
+First, try the GitHub mirror:
 
 ```sh
-curl -fsSL -o scripts/resume/fonts/Roboto-Regular.ttf \
-  "https://github.com/googlefonts/roboto-classic/raw/main/fonts/ttf/Roboto-Regular.ttf"
-curl -fsSL -o scripts/resume/fonts/Roboto-Bold.ttf \
-  "https://github.com/googlefonts/roboto-classic/raw/main/fonts/ttf/Roboto-Bold.ttf"
-curl -fsSL -o scripts/resume/fonts/Roboto-Italic.ttf \
-  "https://github.com/googlefonts/roboto-classic/raw/main/fonts/ttf/Roboto-Italic.ttf"
+base="https://github.com/googlefonts/roboto/raw/main/src/hinted"
+for f in Roboto-Regular Roboto-Bold Roboto-Italic; do
+  curl -fsSL -o "scripts/resume/fonts/$f.ttf" "$base/$f.ttf" || echo "FAILED: $f"
+done
 ```
 
 Verify each is non-empty:
@@ -554,7 +576,15 @@ Verify each is non-empty:
 ls -la scripts/resume/fonts/
 ```
 
-Expected: three `.ttf` files, each >100 KB. If any URL is broken, fall back to <https://fonts.google.com/specimen/Roboto> → Download family → extract `static/Roboto-{Regular,Bold,Italic}.ttf`.
+Expected: three `.ttf` files, each >100 KB.
+
+If any `FAILED` line appeared or a file is <10 KB, fall back to downloading the family ZIP from Google Fonts:
+
+1. Open <https://fonts.google.com/specimen/Roboto>
+2. Click "Download family"
+3. Extract `static/Roboto-Regular.ttf`, `static/Roboto-Bold.ttf`, `static/Roboto-Italic.ttf` into `scripts/resume/fonts/`
+
+Re-run the `ls -la` verification.
 
 - [ ] **Step 3: Write license README**
 
@@ -590,7 +620,12 @@ git commit -m "chore(resume): add Roboto TTF fonts (Apache 2.0) for PDF generati
 import { Font } from "@react-pdf/renderer";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { siteConfig } from "../../src/config";
+
+// Mirrored from `src/config.ts` → `siteConfig.themeColor.hue`. We do NOT import
+// from src/config because src/types/config.ts uses the `@constants/constants`
+// tsconfig path alias, which tsx does not resolve by default. If the site hue
+// changes, update this constant.
+const themeHue = 300;
 
 const thisFile = fileURLToPath(import.meta.url);
 const thisDir = path.dirname(thisFile);
@@ -634,7 +669,7 @@ const hueToHex = (hue: number, saturation = 70, lightness = 45): string => {
 	return `#${toByte(r1)}${toByte(g1)}${toByte(b1)}`;
 };
 
-export const modernAccent = hueToHex(siteConfig.themeColor.hue);
+export const modernAccent = hueToHex(themeHue);
 
 export const classicTheme = {
 	accent: "#29B6F6",
@@ -770,6 +805,12 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		marginBottom: 3,
 	},
+	contactRowInline: {
+		flexDirection: "row",
+		alignItems: "center",
+		marginRight: 14,
+		marginBottom: 2,
+	},
 	contactIcon: { marginRight: 6 },
 	contactText: { fontSize: 9, color: "#333333" },
 	experienceItem: { marginBottom: 10 },
@@ -785,20 +826,20 @@ export type SectionProps = {
 	children: ReactNode;
 };
 
-export const Section = ({ title, color, underline, children }: SectionProps) => (
-	<View style={styles.section}>
-		<Text
-			style={[
-				styles.sectionTitle,
-				...(color ? [{ color }] : []),
-				...(underline ? [styles.sectionTitleUnderline, { borderBottomColor: color ?? "#000000" }] : []),
-			]}
-		>
-			{title}
-		</Text>
-		{children}
-	</View>
-);
+export const Section = ({ title, color, underline, children }: SectionProps) => {
+	const titleStyles = [
+		styles.sectionTitle,
+		color ? { color } : null,
+		underline ? styles.sectionTitleUnderline : null,
+		underline ? { borderBottomColor: color ?? "#000000" } : null,
+	].filter(Boolean);
+	return (
+		<View style={styles.section}>
+			<Text style={titleStyles}>{title}</Text>
+			{children}
+		</View>
+	);
+};
 
 export type BulletProps = { children: ReactNode; mark?: string };
 
@@ -811,11 +852,12 @@ export const Bullet = ({ children, mark = "•" }: BulletProps) => (
 
 export type ContactLineProps = {
 	icon?: ReactNode;
+	inline?: boolean;
 	children: ReactNode;
 };
 
-export const ContactLine = ({ icon, children }: ContactLineProps) => (
-	<View style={styles.contactRow}>
+export const ContactLine = ({ icon, inline, children }: ContactLineProps) => (
+	<View style={inline ? styles.contactRowInline : styles.contactRow}>
 		{icon ? <View style={styles.contactIcon}>{icon}</View> : null}
 		<Text style={styles.contactText}>{children}</Text>
 	</View>
@@ -1076,6 +1118,7 @@ import { experiences } from "../../../src/data/experience";
 import { education } from "../../../src/data/education";
 import { certifications } from "../../../src/data/certifications";
 import { technicalProficiency } from "../../../src/data/technical-proficiency";
+import { featuredSkills } from "../../../src/data/skills";
 import { resumeProfile } from "../../../src/data/resume-profile";
 import { modernTheme } from "../theme";
 import { Section, Bullet, ContactLine, ExperienceItem } from "../components/shared";
@@ -1091,8 +1134,22 @@ const styles = StyleSheet.create({
 	header: { marginBottom: 18 },
 	name: { fontSize: 26, fontWeight: "bold", color: modernTheme.accent },
 	title: { fontSize: 12, color: modernTheme.muted, marginBottom: 8 },
-	contactStrip: { flexDirection: "row", flexWrap: "wrap", gap: 12 },
+	contactStrip: { flexDirection: "row", flexWrap: "wrap" },
 	summary: { fontSize: 10, lineHeight: 1.5, marginBottom: 10 },
+	skillGrid: { flexDirection: "row", flexWrap: "wrap" },
+	chip: {
+		fontSize: 9,
+		paddingTop: 2,
+		paddingBottom: 2,
+		paddingLeft: 6,
+		paddingRight: 6,
+		borderWidth: 1,
+		borderColor: modernTheme.subtle,
+		borderRadius: 3,
+		marginRight: 5,
+		marginBottom: 5,
+		color: modernTheme.text,
+	},
 	techCategory: { marginBottom: 4 },
 	techLabel: { fontWeight: "bold", fontSize: 10 },
 	techItems: { fontSize: 9.5, color: modernTheme.muted },
@@ -1108,10 +1165,18 @@ export const Modern = () => (
 				<Text style={styles.name}>{resumeProfile.fullName}</Text>
 				<Text style={styles.title}>{resumeProfile.title}</Text>
 				<View style={styles.contactStrip}>
-					<ContactLine icon={<PinIcon color={modernTheme.accent} />}>{resumeProfile.location}</ContactLine>
-					<ContactLine icon={<GlobeIcon color={modernTheme.accent} />}>{resumeProfile.website}</ContactLine>
-					<ContactLine icon={<MailIcon color={modernTheme.accent} />}>{resumeProfile.email}</ContactLine>
-					<ContactLine icon={<LinkedInIcon color={modernTheme.accent} />}>{resumeProfile.linkedin}</ContactLine>
+					<ContactLine inline icon={<PinIcon color={modernTheme.accent} />}>
+						{resumeProfile.location}
+					</ContactLine>
+					<ContactLine inline icon={<GlobeIcon color={modernTheme.accent} />}>
+						{resumeProfile.website}
+					</ContactLine>
+					<ContactLine inline icon={<MailIcon color={modernTheme.accent} />}>
+						{resumeProfile.email}
+					</ContactLine>
+					<ContactLine inline icon={<LinkedInIcon color={modernTheme.accent} />}>
+						{resumeProfile.linkedin}
+					</ContactLine>
 				</View>
 			</View>
 
@@ -1132,7 +1197,17 @@ export const Modern = () => (
 				))}
 			</Section>
 
-			<Section title="Technical Skills" color={modernTheme.accent} underline>
+			<Section title="Skills" color={modernTheme.accent} underline>
+				<View style={styles.skillGrid}>
+					{featuredSkills.map((s) => (
+						<Text key={s.name} style={styles.chip}>
+							{s.name}
+						</Text>
+					))}
+				</View>
+			</Section>
+
+			<Section title="Technical Proficiency" color={modernTheme.accent} underline>
 				{technicalProficiency.map((cat) => (
 					<View key={cat.label} style={styles.techCategory}>
 						<Text>
@@ -1427,15 +1502,19 @@ Change the `scripts` object to:
 	"type-check": "tsc --noEmit --isolatedDeclarations",
 	"new-post": "node scripts/new-post.js",
 	"optimize-images": "bash scripts/optimize-images.sh",
-	"format": "biome format --write ./src",
-	"lint": "biome check --write ./src",
+	"format": "biome format --write ./src ./scripts",
+	"lint": "biome check --write ./src ./scripts",
 	"preinstall": "npx only-allow pnpm",
 	"cloudflare:preview": "wrangler dev",
 	"cloudflare:deploy": "pnpm build && wrangler deploy"
 }
 ```
 
-Only three entries change: `generate-resume` (added), `build` (prepended with `pnpm generate-resume &&`), `cloudflare:deploy` (prepended with `pnpm build &&`).
+Changes:
+- `generate-resume` — new entry.
+- `build` — prepended with `pnpm generate-resume &&`.
+- `cloudflare:deploy` — prepended with `pnpm build &&`.
+- `format` and `lint` — extended to include `./scripts` so the new PDF code gets linted/formatted by Biome.
 
 - [ ] **Step 2: Verify**
 
@@ -1536,9 +1615,12 @@ Expected: zero warnings.
 - [ ] **Step 4: Commit**
 
 ```sh
-git add src/data/personal-data.ts public/Jonathan_Esteban_Rico_Lozada_CV_v2.pdf
+git add src/data/personal-data.ts
+git add -u public/Jonathan_Esteban_Rico_Lozada_CV_v2.pdf
 git commit -m "feat(site): point resume link to generated Modern PDF; remove legacy PDF"
 ```
+
+(Use `git add -u` on a removed path to stage the deletion. If you used `git rm` in Step 2, the deletion is already staged and this command is a safe no-op.)
 
 ---
 
@@ -1563,9 +1645,9 @@ to:
         run: pnpm check
 ```
 
-- [ ] **Step 2: Edit the `build` job's `Run Astro Build` step**
+- [ ] **Step 2: Edit the `build` job's step and job name**
 
-Change:
+Change the step:
 
 ```yaml
       - name: Run Astro Build
@@ -1577,6 +1659,18 @@ to:
 ```yaml
       - name: Run build (generates PDFs + Astro build + Pagefind)
         run: pnpm build
+```
+
+And update the job display name so it reflects what actually runs:
+
+```yaml
+    name: Astro Build for Node.js ${{ matrix.node }}
+```
+
+to:
+
+```yaml
+    name: Build for Node.js ${{ matrix.node }}
 ```
 
 - [ ] **Step 3: Commit**
