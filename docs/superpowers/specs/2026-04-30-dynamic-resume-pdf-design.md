@@ -163,7 +163,7 @@ export const resumeProfile = {
   email: "jon.nathan.rich@gmail.com",
   website: "https://nathanredblur.dev/",
   linkedin: "linkedin.com/in/nathanredblur",
-  photo: "/photo.webp",                       // existing file in public/
+  photo: "/photo.jpeg",                       // JPEG because react-pdf cannot decode WebP
 };
 ```
 
@@ -245,7 +245,12 @@ Hue-to-hex for Modern (concrete):
 
 ```ts
 // scripts/resume/theme.ts
-import { siteConfig } from "../../src/config";
+
+// Mirrored from `src/config.ts` → `siteConfig.themeColor.hue`. We do NOT import
+// from src/config because src/types/config.ts uses the `@constants/constants`
+// tsconfig path alias, which tsx does not resolve by default. If the site hue
+// changes, update this constant.
+const themeHue = 300;
 
 const hueToHex = (hue: number, saturation = 70, lightness = 45): string => {
   // Standard HSL → RGB → hex conversion. S=70 / L=45 chosen for print legibility
@@ -269,10 +274,8 @@ const hueToHex = (hue: number, saturation = 70, lightness = 45): string => {
   return `#${toByte(r1)}${toByte(g1)}${toByte(b1)}`;
 };
 
-export const modernAccent = hueToHex(siteConfig.themeColor.hue);
+export const modernAccent = hueToHex(themeHue);
 ```
-
-Note the correct import path: `siteConfig.themeColor.hue` (not `themeConfig.colors.hue`) — per `src/config.ts:10,14-15`.
 
 Fonts (committed under `scripts/resume/fonts/`):
 
@@ -346,4 +349,4 @@ The project has no unit test suite. Validation is manual and CI-driven.
 - Localized (Spanish) PDF variants.
 - Per-role custom bullets inserted conditionally per template (e.g., longer on Classic, shorter on ATS).
 - Photo-less Modern variant.
-- Replacing `photo.webp` with a dedicated high-resolution professional portrait.
+- Replacing `photo.jpeg` with a dedicated high-resolution professional portrait.
