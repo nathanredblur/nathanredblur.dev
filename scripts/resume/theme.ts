@@ -1,6 +1,6 @@
-import { Font } from "@react-pdf/renderer";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { Font } from "@react-pdf/renderer";
 
 // Mirrored from `src/config.ts` → `siteConfig.themeColor.hue`. We do NOT import
 // from src/config because src/types/config.ts uses the `@constants/constants`

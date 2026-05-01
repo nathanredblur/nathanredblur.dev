@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
-import React from "react";
 
 const styles = StyleSheet.create({
 	wrap: { marginBottom: 8 },
@@ -20,7 +19,12 @@ export const SkillBar = ({ name, proficiency, color }: SkillBarProps) => {
 		<View style={styles.wrap}>
 			<Text style={styles.label}>{name}</Text>
 			<View style={styles.trackBg}>
-				<View style={[styles.trackFill, { width: `${pct}%`, backgroundColor: color }]} />
+				<View
+					style={[
+						styles.trackFill,
+						{ width: `${pct}%`, backgroundColor: color },
+					]}
+				/>
 			</View>
 		</View>
 	);

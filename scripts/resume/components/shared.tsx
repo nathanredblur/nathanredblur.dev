@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
-import React, { type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 const styles = StyleSheet.create({
 	section: { marginBottom: 12 },
@@ -43,7 +43,12 @@ export type SectionProps = {
 	children: ReactNode;
 };
 
-export const Section = ({ title, color, underline, children }: SectionProps) => {
+export const Section = ({
+	title,
+	color,
+	underline,
+	children,
+}: SectionProps) => {
 	const titleStyles = [
 		styles.sectionTitle,
 		color ? { color } : null,
@@ -88,15 +93,21 @@ export type ExperienceItemProps = {
 	bullets: string[];
 };
 
-export const ExperienceItem = ({ title, company, duration, summary, bullets }: ExperienceItemProps) => (
+export const ExperienceItem = ({
+	title,
+	company,
+	duration,
+	summary,
+	bullets,
+}: ExperienceItemProps) => (
 	<View style={styles.experienceItem} wrap={false}>
 		<Text style={styles.roleTitle}>{title}</Text>
 		<Text style={styles.roleMeta}>
 			{company} | {duration}
 		</Text>
 		<Text style={styles.roleSummary}>{summary}</Text>
-		{bullets.map((b, i) => (
-			<Bullet key={`${title}-${i}`}>{b}</Bullet>
+		{bullets.map((b) => (
+			<Bullet key={b}>{b}</Bullet>
 		))}
 	</View>
 );

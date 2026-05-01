@@ -1,5 +1,4 @@
 import { Path, Svg } from "@react-pdf/renderer";
-import React from "react";
 
 type IconProps = { size?: number; color?: string };
 

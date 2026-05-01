@@ -1,5 +1,4 @@
 import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
-import React from "react";
 import { certifications } from "../../../src/data/certifications";
 import { education } from "../../../src/data/education";
 import { experiences } from "../../../src/data/experience";
@@ -36,13 +35,16 @@ const styles = StyleSheet.create({
 });
 
 export const AtsFriendly = () => (
-	<Document title={`${resumeProfile.fullName} — Resume (ATS)`} author={resumeProfile.fullName}>
+	<Document
+		title={`${resumeProfile.fullName} — Resume (ATS)`}
+		author={resumeProfile.fullName}
+	>
 		<Page size="A4" style={styles.page}>
 			<Text style={styles.name}>{resumeProfile.fullName}</Text>
 			<Text style={styles.title}>{resumeProfile.title}</Text>
 			<Text style={styles.contact}>
-				Location: {resumeProfile.location} | Email: {resumeProfile.email} | Website: {resumeProfile.website} |
-				LinkedIn: {resumeProfile.linkedin}
+				Location: {resumeProfile.location} | Email: {resumeProfile.email} |
+				Website: {resumeProfile.website} | LinkedIn: {resumeProfile.linkedin}
 			</Text>
 
 			<Text style={styles.sectionTitle}>Summary</Text>
@@ -56,8 +58,8 @@ export const AtsFriendly = () => (
 					</Text>
 					<Text style={styles.jobMeta}>{exp.duration}</Text>
 					<Text style={styles.jobSummary}>{exp.resumeSummary}</Text>
-					{exp.resumeBullets.map((b, i) => (
-						<View key={`${exp.company}-${i}`} style={styles.bulletRow}>
+					{exp.resumeBullets.map((b) => (
+						<View key={b} style={styles.bulletRow}>
 							<Text style={styles.bulletMark}>-</Text>
 							<Text style={styles.bulletText}>{b}</Text>
 						</View>

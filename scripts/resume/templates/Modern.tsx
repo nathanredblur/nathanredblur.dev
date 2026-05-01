@@ -1,13 +1,22 @@
 import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
-import React from "react";
 import { certifications } from "../../../src/data/certifications";
 import { education } from "../../../src/data/education";
 import { experiences } from "../../../src/data/experience";
 import { resumeProfile } from "../../../src/data/resume-profile";
 import { featuredSkills } from "../../../src/data/skills";
 import { technicalProficiency } from "../../../src/data/technical-proficiency";
-import { ContactLine, Bullet, ExperienceItem, Section } from "../components/shared";
-import { GlobeIcon, LinkedInIcon, MailIcon, PinIcon } from "../components/icons";
+import {
+	GlobeIcon,
+	LinkedInIcon,
+	MailIcon,
+	PinIcon,
+} from "../components/icons";
+import {
+	Bullet,
+	ContactLine,
+	ExperienceItem,
+	Section,
+} from "../components/shared";
 import { modernTheme } from "../theme";
 
 const styles = StyleSheet.create({
@@ -45,7 +54,10 @@ const styles = StyleSheet.create({
 });
 
 export const Modern = () => (
-	<Document title={`${resumeProfile.fullName} — Resume (Modern)`} author={resumeProfile.fullName}>
+	<Document
+		title={`${resumeProfile.fullName} — Resume (Modern)`}
+		author={resumeProfile.fullName}
+	>
 		<Page size="A4" style={styles.page}>
 			<View style={styles.header}>
 				<Text style={styles.name}>{resumeProfile.fullName}</Text>
@@ -60,7 +72,10 @@ export const Modern = () => (
 					<ContactLine inline icon={<MailIcon color={modernTheme.accent} />}>
 						{resumeProfile.email}
 					</ContactLine>
-					<ContactLine inline icon={<LinkedInIcon color={modernTheme.accent} />}>
+					<ContactLine
+						inline
+						icon={<LinkedInIcon color={modernTheme.accent} />}
+					>
 						{resumeProfile.linkedin}
 					</ContactLine>
 				</View>
@@ -93,7 +108,11 @@ export const Modern = () => (
 				</View>
 			</Section>
 
-			<Section title="Technical Proficiency" color={modernTheme.accent} underline>
+			<Section
+				title="Technical Proficiency"
+				color={modernTheme.accent}
+				underline
+			>
 				{technicalProficiency.map((cat) => (
 					<View key={cat.label} style={styles.techCategory}>
 						<Text>
