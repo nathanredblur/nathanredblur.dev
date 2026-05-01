@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "generate-resume": "tsx scripts/generate-resume.ts",
+    "generate-resume": "tsx --tsconfig scripts/tsconfig.json scripts/generate-resume.ts",
     "build": "pnpm generate-resume && astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
