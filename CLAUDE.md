@@ -70,7 +70,7 @@ Portfolio data (not blog content) lives in `src/data/`:
 
 ### Resume PDF Generation
 
-Three PDF résumés (Classic, Modern, ATS-Friendly) are generated at build time by `scripts/generate-resume.ts`. Templates live in `scripts/resume/templates/` (outside `src/` so Astro/Vite never process them). They consume typed data from `src/data/experience.ts`, `src/data/education.ts`, `src/data/certifications.ts`, `src/data/technical-proficiency.ts`, `src/data/skills.ts` (`featuredSkills`), and `src/data/resume-profile.ts`.
+Three PDF résumés (Classic, Modern, ATS-Friendly) are generated at build time by `scripts/generate-resume.ts`. Templates live in `src/resume/templates/`, excluded from `astro check` via `tsconfig.json` `exclude` (React JSX isn't compatible with Astro's tsconfig JSX settings). They consume typed data from `src/data/experience.ts`, `src/data/education.ts`, `src/data/certifications.ts`, `src/data/technical-proficiency.ts`, `src/data/skills.ts` (`featuredSkills`), and `src/data/resume-profile.ts`. Each `.tsx` file uses a `/** @jsxRuntime automatic @jsxImportSource react */` pragma so tsx/esbuild transforms JSX with React's automatic runtime regardless of the surrounding tsconfig's JSX settings.
 
 Output files land in `public/resume/*.pdf` (gitignored, regenerated on every build). `personalData.resume` points at the Modern PDF. React and `@react-pdf/renderer` are devDependencies only; no React code ships to the browser.
 

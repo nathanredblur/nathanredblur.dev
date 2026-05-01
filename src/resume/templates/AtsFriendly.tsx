@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic @jsxImportSource react */
 import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
 import { certifications } from "@/data/certifications";
 import { education } from "@/data/education";

@@ -3,9 +3,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { renderToFile } from "@react-pdf/renderer";
 import React from "react";
-import { AtsFriendly } from "./resume/templates/AtsFriendly";
-import { Classic } from "./resume/templates/Classic";
-import { Modern } from "./resume/templates/Modern";
+import { AtsFriendly } from "@/resume/templates/AtsFriendly";
+import { Classic } from "@/resume/templates/Classic";
+import { Modern } from "@/resume/templates/Modern";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);

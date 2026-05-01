@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic @jsxImportSource react */
 import { StyleSheet, Text, View } from "@react-pdf/renderer";
 import type { ReactNode } from "react";
 

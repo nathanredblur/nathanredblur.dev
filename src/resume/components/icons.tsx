@@ -1,3 +1,4 @@
+/** @jsxRuntime automatic @jsxImportSource react */
 import { Path, Svg } from "@react-pdf/renderer";
 
 type IconProps = { size?: number; color?: string };
