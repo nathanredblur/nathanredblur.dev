@@ -25,5 +25,5 @@ export const personalData = {
 		calendar:
 			"https://calendar.google.com/calendar/appointments/schedules/AcZssZ1cWUVnvSklyDiK7hap9RBCHvBn4e88eICyiHikimsiMr1bomWCZmJjAhClVxXn0TIiSsWkDDnn?gv=true",
 	},
-	resume: "/Jonathan_Esteban_Rico_Lozada_CV_v2.pdf",
+	resume: "/resume/Jonathan_Rico_CV_Modern.pdf",
 };

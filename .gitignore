@@ -30,3 +30,6 @@ yarn.lock
 .idea
 *.iml
 .playwright-mcp/
+
+# generated resume PDFs (see scripts/generate-resume.ts)
+public/resume/*.pdf

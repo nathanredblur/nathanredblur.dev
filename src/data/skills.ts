@@ -37,3 +37,16 @@ export const skillIcons: Record<string, string> = {
 	Figma: "/svg/skills/figma.svg",
 	Sketch: "/svg/skills/sketch.svg",
 };
+
+export interface FeaturedSkill {
+	name: string;
+	proficiency: number;
+}
+
+export const featuredSkills: FeaturedSkill[] = [
+	{ name: "Typescript", proficiency: 92 },
+	{ name: "React", proficiency: 95 },
+	{ name: "NextJs", proficiency: 88 },
+	{ name: "Javascript", proficiency: 95 },
+	{ name: "Figma", proficiency: 80 },
+];

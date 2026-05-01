@@ -6,17 +6,18 @@
     "dev": "astro dev",
     "start": "astro dev",
     "check": "astro check",
-    "build": "astro build && pagefind --site dist",
+    "generate-resume": "tsx --tsconfig scripts/tsconfig.json scripts/generate-resume.ts",
+    "build": "pnpm generate-resume && astro build && pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
     "type-check": "tsc --noEmit --isolatedDeclarations",
     "new-post": "node scripts/new-post.js",
     "optimize-images": "bash scripts/optimize-images.sh",
-    "format": "biome format --write ./src",
-    "lint": "biome check --write ./src",
+    "format": "biome format --write ./src ./scripts",
+    "lint": "biome check --write ./src ./scripts",
     "preinstall": "npx only-allow pnpm",
     "cloudflare:preview": "wrangler dev",
-    "cloudflare:deploy": "wrangler deploy"
+    "cloudflare:deploy": "pnpm build && wrangler deploy"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
@@ -68,13 +69,18 @@
   "devDependencies": {
     "@astrojs/ts-plugin": "^1.10.6",
     "@biomejs/biome": "2.4.6",
+    "@react-pdf/renderer": "^4",
     "@rollup/plugin-yaml": "^4.1.2",
     "@types/hast": "^3.0.4",
     "@types/markdown-it": "^14.1.2",
     "@types/mdast": "^4.0.4",
+    "@types/react": "^18",
     "@types/sanitize-html": "^2.16.1",
     "postcss-import": "^16.1.1",
     "postcss-nesting": "^13.0.2",
+    "react": "^18",
+    "react-dom": "^18",
+    "tsx": "^4",
     "wrangler": "^4.62.0"
   },
   "packageManager": "pnpm@9.14.4"
