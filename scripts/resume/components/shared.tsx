@@ -57,7 +57,9 @@ export const Section = ({
 	].filter(Boolean);
 	return (
 		<View style={styles.section}>
-			<Text style={titleStyles}>{title}</Text>
+			<Text style={titleStyles} minPresenceAhead={40}>
+				{title}
+			</Text>
 			{children}
 		</View>
 	);

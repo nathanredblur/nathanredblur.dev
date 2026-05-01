@@ -31,6 +31,15 @@ const styles = StyleSheet.create({
 	title: { fontSize: 12, color: modernTheme.muted, marginBottom: 8 },
 	contactStrip: { flexDirection: "row", flexWrap: "wrap" },
 	summary: { fontSize: 10, lineHeight: 1.5, marginBottom: 10 },
+	skillGroup: { marginBottom: 6 },
+	skillGroupLabel: {
+		fontSize: 9,
+		fontWeight: "bold",
+		color: modernTheme.muted,
+		marginBottom: 3,
+		textTransform: "uppercase",
+		letterSpacing: 0.5,
+	},
 	skillGrid: { flexDirection: "row", flexWrap: "wrap" },
 	chip: {
 		fontSize: 9,
@@ -44,6 +53,19 @@ const styles = StyleSheet.create({
 		marginRight: 5,
 		marginBottom: 5,
 		color: modernTheme.text,
+	},
+	chipAccent: {
+		fontSize: 9,
+		paddingTop: 2,
+		paddingBottom: 2,
+		paddingLeft: 6,
+		paddingRight: 6,
+		borderWidth: 1,
+		borderColor: modernTheme.accent,
+		borderRadius: 3,
+		marginRight: 5,
+		marginBottom: 5,
+		color: modernTheme.accent,
 	},
 	techCategory: { marginBottom: 4 },
 	techLabel: { fontWeight: "bold", fontSize: 10 },
@@ -85,6 +107,29 @@ export const Modern = () => (
 				<Text style={styles.summary}>{resumeProfile.summary}</Text>
 			</Section>
 
+			<Section title="Skills" color={modernTheme.accent} underline>
+				<View style={styles.skillGroup}>
+					<Text style={styles.skillGroupLabel}>Technical</Text>
+					<View style={styles.skillGrid}>
+						{featuredSkills.map((s) => (
+							<Text key={s.name} style={styles.chipAccent}>
+								{s.name}
+							</Text>
+						))}
+					</View>
+				</View>
+				<View style={styles.skillGroup}>
+					<Text style={styles.skillGroupLabel}>Soft</Text>
+					<View style={styles.skillGrid}>
+						{resumeProfile.softSkills.map((s) => (
+							<Text key={s} style={styles.chip}>
+								{s}
+							</Text>
+						))}
+					</View>
+				</View>
+			</Section>
+
 			<Section title="Experience" color={modernTheme.accent} underline>
 				{experiences.map((exp) => (
 					<ExperienceItem
@@ -96,16 +141,6 @@ export const Modern = () => (
 						bullets={exp.resumeBullets}
 					/>
 				))}
-			</Section>
-
-			<Section title="Skills" color={modernTheme.accent} underline>
-				<View style={styles.skillGrid}>
-					{featuredSkills.map((s) => (
-						<Text key={s.name} style={styles.chip}>
-							{s.name}
-						</Text>
-					))}
-				</View>
 			</Section>
 
 			<Section

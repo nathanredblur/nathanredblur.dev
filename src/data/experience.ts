@@ -149,19 +149,19 @@ export const experiences: Experience[] = [
 		],
 	},
 	{
-		title: "Flash Developer",
-		company: "Institución Universitaria ITM",
+		title: "Startup Founder & EdTech Developer",
+		company: "Revista Kanzen, Peesco, Institución Universitaria ITM",
 		type: "Developer",
-		duration: "Jan 2007 - Jun 2008",
+		duration: "Jul 2005 - Feb 2009",
 		webDescription:
-			"Creating engaging interactive games with Adobe Flash and ActionScript for ITM University's online education platform. Experienced Entrepreneur and Tech Lead specializing in creating custom WordPress templates and plugins for Joomla, ELGG, and Moodle platforms. Skilled in leading teams and delivering innovative solutions to drive business growth. Passionate about leveraging technology to enhance user experiences.",
+			"Early career blending startup entrepreneurship with educational technology. Founded Revista Kanzen (a digital magazine startup) and co-founded Peesco. At ITM University, developed the virtual education area, building interactive games and learning experiences with Adobe Flash and ActionScript. Early exposure to leading small teams and shipping production software across multiple platforms.",
 		resumeSummary:
-			"ITM University offers a range of academic programs with a focus on technology and innovation. Developed interactive games using Adobe Flash and ActionScript for the university's online education platform.",
+			"Combined startup founding with educational technology development at a Colombian university.",
 		resumeBullets: [
-			"Created interactive educational games using Adobe Flash and ActionScript.",
-			"Aligned games with curriculum goals in collaboration with educational designers.",
-			"Developed animations and interactive features for engagement.",
-			"Conducted testing for functionality and performance.",
+			"Founded Revista Kanzen, a digital magazine startup.",
+			"Co-founded Peesco, a technology startup.",
+			"Developed the virtual education area at ITM University, building interactive learning experiences with Adobe Flash and ActionScript.",
+			"Led small teams and delivered production software across multiple platforms (WordPress, Joomla, Moodle, ELGG).",
 		],
 	},
 ];
