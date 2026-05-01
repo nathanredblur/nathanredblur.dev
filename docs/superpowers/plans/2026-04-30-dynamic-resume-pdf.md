@@ -1084,7 +1084,7 @@ export const Classic = () => (
 ```
 
 Notes:
-- `publicAsset(resumeProfile.photo)` is defined in `scripts/resume/theme.ts` (Task 9 / 16) and translates `/photo.webp` to an absolute filesystem path under `public/`. `@react-pdf/renderer`'s `Image` component requires a filesystem path (or data URI) at Node render time.
+- `publicAsset(resumeProfile.photo)` is defined in `scripts/resume/theme.ts` (Task 9) and translates `/photo.jpeg` to an absolute filesystem path under `public/`. `@react-pdf/renderer`'s `Image` component requires a filesystem path (or data URI) at Node render time.
 - Bullet indexing uses company+duration as a stable key.
 
 - [ ] **Step 2: Sanity import check**
