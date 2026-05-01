@@ -1,12 +1,9 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { Font } from "@react-pdf/renderer";
+import { siteConfig } from "@/config";
 
-// Mirrored from `src/config.ts` → `siteConfig.themeColor.hue`. We do NOT import
-// from src/config because src/types/config.ts uses the `@constants/constants`
-// tsconfig path alias, which tsx does not resolve by default. If the site hue
-// changes, update this constant.
-const themeHue = 300;
+const themeHue = siteConfig.themeColor.hue;
 
 const thisFile = fileURLToPath(import.meta.url);
 const thisDir = path.dirname(thisFile);

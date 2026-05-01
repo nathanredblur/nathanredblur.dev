@@ -1,10 +1,10 @@
 import { Document, Page, StyleSheet, Text, View } from "@react-pdf/renderer";
-import { certifications } from "../../../src/data/certifications";
-import { education } from "../../../src/data/education";
-import { experiences } from "../../../src/data/experience";
-import { resumeProfile } from "../../../src/data/resume-profile";
-import { featuredSkills } from "../../../src/data/skills";
-import { technicalProficiency } from "../../../src/data/technical-proficiency";
+import { certifications } from "@/data/certifications";
+import { education } from "@/data/education";
+import { experiences } from "@/data/experience";
+import { resumeProfile } from "@/data/resume-profile";
+import { featuredSkills } from "@/data/skills";
+import { technicalProficiency } from "@/data/technical-proficiency";
 import {
 	GlobeIcon,
 	LinkedInIcon,
