@@ -12,12 +12,13 @@ pnpm check            # Run Astro type checking
 pnpm type-check       # TypeScript strict mode check with isolated declarations
 pnpm lint             # Lint and auto-fix with Biome
 pnpm format           # Format code with Biome
+pnpm generate-resume  # Regenerate 3 resume PDFs into public/resume/
 pnpm new-post <name>  # Scaffold new blog post in src/content/posts/
 pnpm cloudflare:preview  # Preview with Wrangler
 pnpm cloudflare:deploy   # Deploy to Cloudflare Workers
 ```
 
-There are no unit tests — CI validates with `pnpm astro check` and `pnpm astro build`.
+There are no unit tests — CI validates with `pnpm check` and `pnpm build`.
 
 ## Conventions
 
@@ -63,9 +64,15 @@ lang: en                # only set if different from site lang in config.ts
 
 Portfolio data (not blog content) lives in `src/data/`:
 - `personal-projects.ts` — project cards with title, description, github, website, screenshot, status, tools
-- `experience.ts` — work experience entries
+- `experience.ts` — work experience with `webDescription` (site) and `resumeSummary` + `resumeBullets` (résumé)
 - `skills.ts` — tech skills grouped by category
 - `personal-data.ts` — general profile data
+
+### Resume PDF Generation
+
+Three PDF résumés (Classic, Modern, ATS-Friendly) are generated at build time by `scripts/generate-resume.ts`. Templates live in `scripts/resume/templates/` (outside `src/` so Astro/Vite never process them). They consume typed data from `src/data/experience.ts`, `src/data/education.ts`, `src/data/certifications.ts`, `src/data/technical-proficiency.ts`, `src/data/skills.ts` (`featuredSkills`), and `src/data/resume-profile.ts`.
+
+Output files land in `public/resume/*.pdf` (gitignored, regenerated on every build). `personalData.resume` points at the Modern PDF. React and `@react-pdf/renderer` are devDependencies only; no React code ships to the browser.
 
 ### Component Structure
 
@@ -99,4 +106,4 @@ TypeScript path aliases defined in `tsconfig.json`:
 
 ### Deployment
 
-The site deploys to Cloudflare Workers. The `@astrojs/cloudflare` adapter is configured in `astro.config.mjs`. CI (`.github/workflows/build.yml`) runs `pnpm astro check` and `pnpm astro build` on push/PR to main. A separate workflow (`.github/workflows/biome.yml`) runs Biome linting.
+The site deploys to Cloudflare Workers. The `@astrojs/cloudflare` adapter is configured in `astro.config.mjs`. CI (`.github/workflows/build.yml`) runs `pnpm check` and `pnpm build` on push/PR to main. A separate workflow (`.github/workflows/biome.yml`) runs Biome linting.
