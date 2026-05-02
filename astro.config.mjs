@@ -166,6 +166,10 @@ export default defineConfig({
         // export so consumers that do `import debug from "debug"`
         // keep working. See withastro/astro#15565 and
         // expressive-code/expressive-code#439.
+        //
+        // TODO: Drop this alias + src/shims/debug.js + the `obug` dep
+        // once withastro/astro#16569 ships in a @astrojs/cloudflare
+        // release.
         debug: new URL("./src/shims/debug.js", import.meta.url).pathname,
       },
     },
