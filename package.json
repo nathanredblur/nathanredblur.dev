@@ -44,6 +44,7 @@
     "katex": "^0.16.37",
     "markdown-it": "^14.1.1",
     "mdast-util-to-string": "^4.0.0",
+    "obug": "^2.1.1",
     "overlayscrollbars": "^2.14.0",
     "pagefind": "^1.4.0",
     "photoswipe": "^5.4.4",

@@ -157,6 +157,18 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+    resolve: {
+      alias: {
+        // Workaround for "module is not defined" in astro dev under
+        // @cloudflare/vite-plugin. The CJS `debug` package references
+        // `module.exports`, which fails in the Workers runner. The
+        // shim forwards to `obug` (ESM fork) and re-exposes a default
+        // export so consumers that do `import debug from "debug"`
+        // keep working. See withastro/astro#15565 and
+        // expressive-code/expressive-code#439.
+        debug: new URL("./src/shims/debug.js", import.meta.url).pathname,
+      },
+    },
     build: {
       rollupOptions: {
         onwarn(warning, warn) {
