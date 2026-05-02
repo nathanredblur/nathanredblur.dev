@@ -25,5 +25,6 @@ export const personalData = {
     calendar:
       "https://calendar.google.com/calendar/appointments/schedules/AcZssZ1cWUVnvSklyDiK7hap9RBCHvBn4e88eICyiHikimsiMr1bomWCZmJjAhClVxXn0TIiSsWkDDnn?gv=true",
   },
-  resume: "/resume/Jonathan_Rico_CV_Modern.pdf",
+  resume: "/resume/Jonathan_Rico_CV_Classic.pdf",
+  resumeAts: "/resume/Jonathan_Rico_CV_ATS.pdf",
 };

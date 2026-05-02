@@ -52,29 +52,44 @@ const socialIcons: Record<string, string> = {
 			</div>
 
 			{/* CTA Buttons */}
-			<div class="flex items-center gap-3 flex-wrap">
-				<a
-					href={personalData.social.linkedIn}
-					target="_blank"
-					rel="noopener noreferrer"
-					class="bg-gradient-to-r from-pink-500 to-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-violet-600 hover:to-pink-500"
-				>
-					<span class="px-4 md:px-8 py-3 md:py-4 bg-[#0d1224] rounded-full text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 flex items-center gap-2 hover:gap-3">
-						<span>Contact me</span>
-						<Icon name="fa6-solid:envelope" class="text-[1.25rem]" />
-					</span>
-				</a>
-
-				{personalData.resume && (
+			<div class="flex flex-col items-start gap-2 flex-wrap w-full">
+				<div class="flex items-center gap-3 flex-wrap">
 					<a
-						class="flex items-center gap-2 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-4 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 hover:from-violet-600 hover:to-pink-500"
+						href={personalData.social.linkedIn}
 						target="_blank"
 						rel="noopener noreferrer"
-						href={personalData.resume}
+						class="bg-gradient-to-r from-pink-500 to-violet-600 p-[1px] rounded-full transition-all duration-300 hover:from-violet-600 hover:to-pink-500"
 					>
-						<span>Get Resume</span>
-						<Icon name="fa6-solid:file-pdf" class="text-[1.25rem]" />
+						<span class="px-4 md:px-8 py-3 md:py-4 bg-[#0d1224] rounded-full text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 flex items-center gap-2 hover:gap-3">
+							<span>Contact me</span>
+							<Icon name="fa6-solid:envelope" class="text-[1.25rem]" />
+						</span>
 					</a>
+
+					{personalData.resume && (
+						<a
+							class="flex items-center gap-2 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-4 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 hover:from-violet-600 hover:to-pink-500"
+							target="_blank"
+							rel="noopener noreferrer"
+							href={personalData.resume}
+						>
+							<span>Get Resume</span>
+							<Icon name="fa6-solid:file-pdf" class="text-[1.25rem]" />
+						</a>
+					)}
+				</div>
+
+				{personalData.resumeAts && (
+					<div class="text-right w-full mt-3 -mb-6">
+						<a
+							href={personalData.resumeAts}
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-xs text-gray-400 hover:text-violet-300 underline decoration-dotted underline-offset-4 transition-colors "
+						>
+							ATS-friendly version here.
+						</a>
+					</div>
 				)}
 			</div>
 		</div>

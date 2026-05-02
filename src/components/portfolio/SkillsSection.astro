@@ -1,127 +1,340 @@
 ---
-import { skillIcons, skillsData } from "@/data/skills";
-
-// Duplicate skills for seamless loop
-const skillsRow1 = [...skillsData, ...skillsData];
+import { Icon } from "astro-icon/components";
+import { signatureStack, skillCategories, skillIcons } from "@/data/skills";
 ---
 
-<section
-	id="skills"
-	class="relative z-50 border-t my-12 lg:my-24 border-[#25213b]"
->
-	<!-- Glowing orb -->
-	<div class="w-[100px] h-[100px] bg-violet-100 rounded-full absolute top-6 left-[42%] translate-x-1/2 filter blur-3xl opacity-20"></div>
+<section id="skills" class="relative z-50 my-12 lg:my-24">
+  <!-- Left-aligned title like Projects -->
+  <div class="sticky top-10 z-10">
+    <div
+      class="w-[80px] h-[80px] bg-violet-100 rounded-full absolute -top-3 left-0 translate-x-1/2 filter blur-3xl opacity-30"
+    >
+    </div>
+    <div class="flex items-center justify-start relative">
+      <span
+        class="bg-[#1a1443] text-white p-2 px-5 text-2xl md:text-3xl rounded-md absolute left-0 z-10"
+      >
+        Skills
+      </span>
+      <span class="w-full h-[2px] bg-[#1a1443]"></span>
+    </div>
+  </div>
 
-	<img
-		src="/section.svg"
-		alt="Hero"
-		width={1572}
-		height={795}
-		class="absolute top-0 -z-10"
-	/>
+  <div class="pt-24">
+    <!-- Signature stack -->
+    <p
+      class="text-center text-xs uppercase tracking-[0.25em] text-violet-300/70 mb-6"
+    >
+      Currently Shipping With
+    </p>
+    <div
+      class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 max-w-4xl mx-auto px-4 mb-16"
+    >
+      {
+        signatureStack.map((skill, i) => {
+          const iconUrl = skillIcons[skill];
+          return (
+            <div
+              class="signature-tile group relative rounded-xl border border-violet-500/20 bg-gradient-to-br from-[#11152c] to-[#0a0d37] p-4 transition-all duration-300 hover:border-violet-400/60 hover:-translate-y-1"
+              style={`animation-delay: ${i * 80}ms`}
+            >
+              <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-violet-500/0 to-pink-500/0 group-hover:from-violet-500/10 group-hover:to-pink-500/10 transition-all duration-300" />
+              <div class="relative flex flex-col items-center justify-center gap-3">
+                <div class="h-10 w-10 flex items-center justify-center">
+                  {iconUrl ? (
+                    <img
+                      src={iconUrl}
+                      alt={skill}
+                      class="h-10 w-10 object-contain"
+                      width={40}
+                      height={40}
+                    />
+                  ) : (
+                    <div class="h-10 w-10 rounded-lg bg-gradient-to-br from-violet-500/30 to-pink-500/30 flex items-center justify-center text-violet-200 font-bold text-lg">
+                      {skill.charAt(0)}
+                    </div>
+                  )}
+                </div>
+                <p class="text-white text-xs sm:text-sm font-medium text-center leading-tight">
+                  {skill}
+                </p>
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
 
-	<div class="flex justify-center my-5 lg:py-8">
-		<div class="flex items-center">
-			<span class="w-24 h-[2px] bg-[#1a1443]"></span>
-			<span class="bg-[#1a1443] w-fit text-white p-2 px-5 text-3xl rounded-md">
-				Skills
-			</span>
-			<span class="w-24 h-[2px] bg-[#1a1443]"></span>
-		</div>
-	</div>
+    <!-- Category carousel -->
+    <div
+      class="category-carousel-wrapper relative max-w-5xl mx-auto"
+      data-autoplay-ms="6000"
+    >
+      <div
+        id="skills-carousel"
+        class="category-carousel flex overflow-x-auto snap-x snap-mandatory rounded-2xl"
+      >
+        {
+          skillCategories.map((category, i) => (
+            <article
+              class="category-card snap-center shrink-0 basis-full grid grid-cols-[180px_1fr] sm:grid-cols-[240px_1fr] rounded-2xl border border-[#25213b] bg-gradient-to-br from-[#11152c] to-[#0d1030] overflow-hidden transition-all duration-500 hover:border-violet-400/50 hover:shadow-[0_0_40px_-10px_rgba(139,92,246,0.35)]"
+              style={`animation-delay: ${i * 120}ms`}
+            >
+              {/* Left: visual */}
+              <div class="relative min-h-[280px]">
+                <img
+                  src={category.image}
+                  alt=""
+                  class="absolute inset-0 h-full w-full object-cover"
+                  loading="lazy"
+                />
+              </div>
 
-	<!-- Marquee Row 1 - Left direction -->
-	<div class="marquee-container my-12">
-		<div class="marquee marquee-left">
-			{skillsRow1.map((skill) => {
-				const iconUrl = skillIcons[skill];
-				return (
-					<div class="w-36 min-w-fit h-fit flex flex-col items-center justify-center transition-all duration-500 m-3 sm:m-5 rounded-lg relative hover:scale-110 cursor-pointer">
-						<div class="h-full w-full rounded-lg border border-[#1f223c] bg-[#11152c] shadow-none group-hover:border-violet-500 transition-all duration-500">
-							<div class="flex -translate-y-[1px] justify-center">
-								<div class="w-3/4">
-									<div class="h-[1px] w-full bg-gradient-to-r from-transparent via-violet-500 to-transparent"></div>
-								</div>
-							</div>
-							<div class="flex flex-col items-center justify-center gap-3 p-6">
-								<div class="h-8 sm:h-10 flex items-center justify-center">
-									{iconUrl ? (
-										<img
-											src={iconUrl}
-											alt={skill}
-											class="h-full w-auto rounded-lg"
-											width={40}
-											height={40}
-										/>
-									) : (
-										<div class="w-10 h-10 rounded-lg bg-violet-500/20 flex items-center justify-center text-violet-400 font-bold">
-											{skill.charAt(0)}
-										</div>
-									)}
-								</div>
-								<p class="text-white text-sm sm:text-lg">{skill}</p>
-							</div>
-						</div>
-					</div>
-				);
-			})}
-		</div>
-	</div>
+              {/* Right: content */}
+              <div class="relative z-[1] flex flex-col p-6 lg:p-8 min-h-[280px]">
+                <div class="flex items-baseline gap-3 mb-2">
+                  <span class="text-violet-400/40 text-sm font-mono">
+                    0{i + 1}
+                  </span>
+                  <h3 class="text-white text-lg lg:text-xl font-semibold">
+                    {category.label}
+                  </h3>
+                </div>
+                <p class="text-gray-400 text-sm mb-5">{category.blurb}</p>
+                <div class="category-chip-grid flex flex-wrap content-start gap-2">
+                  {category.items.map((item) => {
+                    const iconUrl = skillIcons[item];
+                    return (
+                      <span class="inline-flex items-center gap-2 rounded-full border border-[#25213b] bg-[#0a0d37]/70 px-3 py-1.5 text-sm text-gray-200 transition-colors hover:border-violet-400/60 hover:text-white">
+                        {iconUrl ? (
+                          <img
+                            src={iconUrl}
+                            alt=""
+                            class="h-4 w-4 object-contain shrink-0"
+                            width={16}
+                            height={16}
+                          />
+                        ) : (
+                          <span class="h-1.5 w-1.5 rounded-full bg-violet-400" />
+                        )}
+                        {item}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+
+      <button
+        type="button"
+        id="skills-prev"
+        aria-label="Previous category"
+        class="carousel-arrow absolute left-3 top-1/2 -translate-y-1/2 z-20 h-10 w-10 flex items-center justify-center rounded-full bg-[#0d1224]/85 border border-violet-500/40 text-violet-100 hover:text-white hover:border-violet-400 hover:bg-[#1a1443] shadow-lg shadow-black/40 transition-all"
+      >
+        <Icon name="fa6-solid:chevron-left" class="text-sm" />
+      </button>
+      <button
+        type="button"
+        id="skills-next"
+        aria-label="Next category"
+        class="carousel-arrow absolute right-3 top-1/2 -translate-y-1/2 z-20 h-10 w-10 flex items-center justify-center rounded-full bg-[#0d1224]/85 border border-violet-500/40 text-violet-100 hover:text-white hover:border-violet-400 hover:bg-[#1a1443] shadow-lg shadow-black/40 transition-all"
+      >
+        <Icon name="fa6-solid:chevron-right" class="text-sm" />
+      </button>
+
+      <!-- Dots -->
+      <div
+        id="skills-carousel-dots"
+        class="flex justify-center gap-2 mt-2"
+        aria-label="Category pagination"
+      >
+        {
+          skillCategories.map((_, i) => (
+            <button
+              type="button"
+              class="carousel-dot h-1.5 w-6 rounded-full bg-[#25213b] transition-all duration-300 data-[active=true]:w-10 data-[active=true]:bg-violet-400 hover:bg-violet-500/60"
+              data-index={i}
+              data-active={i === 0 ? "true" : "false"}
+              aria-label={`Go to category ${i + 1}`}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
-	.marquee-container {
-		width: 100%;
-		overflow: hidden;
-		mask-image: linear-gradient(
-			to right,
-			transparent,
-			black 10%,
-			black 90%,
-			transparent
-		);
-		-webkit-mask-image: linear-gradient(
-			to right,
-			transparent,
-			black 10%,
-			black 90%,
-			transparent
-		);
-	}
+  .signature-tile,
+  .category-card {
+    opacity: 0;
+    animation: skill-fade-up 600ms ease-out forwards;
+  }
 
-	.marquee {
-		display: flex;
-		width: max-content;
-	}
+  @keyframes skill-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
 
-	.marquee-left {
-		animation: marquee-scroll-left 30s linear infinite;
-	}
+  .category-carousel {
+    scrollbar-width: none;
+  }
+  .category-carousel::-webkit-scrollbar {
+    display: none;
+  }
 
-	.marquee-right {
-		animation: marquee-scroll-right 40s linear infinite;
-	}
-
-	/* Pause on hover */
-	.marquee-container:hover .marquee {
-		animation-play-state: paused;
-	}
-
-	@keyframes marquee-scroll-left {
-		0% {
-			transform: translateX(0);
-		}
-		100% {
-			transform: translateX(-50%);
-		}
-	}
-
-	@keyframes marquee-scroll-right {
-		0% {
-			transform: translateX(-50%);
-		}
-		100% {
-			transform: translateX(0);
-		}
-	}
+  /* Lock the chip row area so 2-line and 3-line categories share the same card height. */
+  .category-chip-grid {
+    min-height: 9.5rem;
+  }
 </style>
+
+<script>
+  function initSkillsCarousel() {
+    const wrapper = document.querySelector<HTMLElement>(
+      ".category-carousel-wrapper",
+    );
+    const carousel = document.getElementById("skills-carousel");
+    const dotsContainer = document.getElementById("skills-carousel-dots");
+    const prevBtn = document.getElementById("skills-prev") as HTMLButtonElement | null;
+    const nextBtn = document.getElementById("skills-next") as HTMLButtonElement | null;
+    if (!wrapper || !carousel || !dotsContainer || !prevBtn || !nextBtn) return;
+
+    const dots = Array.from(
+      dotsContainer.querySelectorAll<HTMLButtonElement>(".carousel-dot"),
+    );
+    const cards = Array.from(
+      carousel.querySelectorAll<HTMLElement>(".category-card"),
+    );
+    if (!cards.length) return;
+
+    let currentIndex = 0;
+    let autoplayTimer: ReturnType<typeof setInterval> | null = null;
+    // While we drive the scroll programmatically, ignore the
+    // IntersectionObserver so the dots don't flicker as cards pass by.
+    let ignoreScrollUntil = 0;
+    const autoplayMs = Number(wrapper.dataset.autoplayMs ?? "6000");
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    function scrollToIndex(index: number, behavior: ScrollBehavior = "smooth") {
+      const target = cards[index];
+      if (!target || !carousel) return;
+      const left = Math.max(
+        0,
+        target.offsetLeft -
+          (carousel.clientWidth - target.clientWidth) / 2,
+      );
+      ignoreScrollUntil = Date.now() + (behavior === "smooth" ? 700 : 150);
+      carousel.scrollTo({ left, behavior });
+    }
+
+    function setActive(index: number) {
+      currentIndex = (index + cards.length) % cards.length;
+      dots.forEach((dot, i) => {
+        dot.dataset.active = String(i === currentIndex);
+      });
+    }
+
+    function goTo(rawIndex: number, force: ScrollBehavior | null = null) {
+      const previousIndex = currentIndex;
+      const newIndex = (rawIndex + cards.length) % cards.length;
+      // Wrap-around: jump instantly so the user sees a clean loop instead
+      // of the carousel rewinding through every slide.
+      const wrapped =
+        (previousIndex === cards.length - 1 && newIndex === 0) ||
+        (previousIndex === 0 && newIndex === cards.length - 1);
+      const behavior: ScrollBehavior =
+        force ?? (wrapped ? "instant" : "smooth");
+      setActive(newIndex);
+      scrollToIndex(newIndex, behavior);
+    }
+
+    function next() {
+      goTo(currentIndex + 1);
+    }
+    function prev() {
+      goTo(currentIndex - 1);
+    }
+
+    function startAutoplay() {
+      if (prefersReducedMotion || autoplayTimer) return;
+      autoplayTimer = setInterval(next, autoplayMs);
+    }
+    function stopAutoplay() {
+      if (autoplayTimer) {
+        clearInterval(autoplayTimer);
+        autoplayTimer = null;
+      }
+    }
+
+    // Sync dots on manual swipe/scroll. Ignored during programmatic scrolls.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (Date.now() < ignoreScrollUntil) return;
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            const index = cards.indexOf(entry.target as HTMLElement);
+            if (index !== -1) setActive(index);
+          }
+        }
+      },
+      { root: carousel, threshold: 0.65 },
+    );
+    cards.forEach((card) => observer.observe(card));
+
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => {
+        stopAutoplay();
+        // Dots are a direct jump to a specific slide — don't use the
+        // wrap-around instant jump, always use smooth.
+        const index = Number(dot.dataset.index);
+        setActive(index);
+        scrollToIndex(index, "smooth");
+        startAutoplay();
+      });
+    });
+
+    prevBtn.addEventListener("click", () => {
+      stopAutoplay();
+      prev();
+      startAutoplay();
+    });
+    nextBtn.addEventListener("click", () => {
+      stopAutoplay();
+      next();
+      startAutoplay();
+    });
+
+    // Pause autoplay when user hovers or interacts with the carousel.
+    wrapper.addEventListener("mouseenter", stopAutoplay);
+    wrapper.addEventListener("mouseleave", startAutoplay);
+    carousel.addEventListener("touchstart", stopAutoplay, { passive: true });
+    carousel.addEventListener("touchend", startAutoplay, { passive: true });
+
+    // Only autoplay when the section is on screen.
+    const visibilityObserver = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) startAutoplay();
+          else stopAutoplay();
+        }
+      },
+      { threshold: 0.3 },
+    );
+    visibilityObserver.observe(wrapper);
+  }
+
+  initSkillsCarousel();
+  document.addEventListener("swup:contentReplaced", initSkillsCarousel);
+</script>

@@ -11,12 +11,12 @@ export const resumeProfile = {
   linkedin: "linkedin.com/in/nathanredblur",
   photo: "/photo.jpeg",
   softSkills: [
-    "Communication",
-    "Collaboration",
+    "Systems Thinking",
+    "Technical Leadership",
     "Creative Problem Solving",
-    "Critical thinking",
-    "Time management",
-    "Team Leadership",
+    "Critical Thinking",
+    "Async Collaboration",
+    "Clear Written Communication",
   ],
 } as const;
 
