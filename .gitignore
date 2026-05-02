@@ -33,3 +33,6 @@ yarn.lock
 
 # generated resume PDFs (see scripts/generate-resume.ts)
 public/resume/*.pdf
+
+# wrangler configuration
+.wrangler

@@ -46,6 +46,7 @@ const isHomePage = pathsEqual(Astro.url.pathname, url("/"));
 // why doing this in Layout instead of GlobalStyles: https://github.com/withastro/astro/issues/6728#issuecomment-1502203757
 const configHue = siteConfig.themeColor.hue;
 const configThemeFixed = siteConfig.themeColor.fixed;
+const configLightDark = siteConfig.themeColor.lightDark ?? null;
 if (!banner || typeof banner !== "string" || banner.trim() === "") {
   banner = siteConfig.banner.src;
 }
@@ -81,7 +82,12 @@ const bannerOffset =
 ---
 
 <!DOCTYPE html>
-<html lang={siteLang} class="bg-[var(--page-bg)] transition text-[14px] md:text-[16px]"
+<html lang={siteLang}
+	  class:list={[
+		"bg-[var(--page-bg)] transition text-[14px] md:text-[16px]",
+		{ dark: configLightDark === DARK_MODE },
+	  ]}
+	  data-theme-lock={configLightDark ?? null}
 	  data-overlayscrollbars-initialize
 >
 	<head>
@@ -118,27 +124,46 @@ const bannerOffset =
 		))}
 
 		<!-- Set the theme before the page is rendered to avoid a flash -->
-		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, AUTO_MODE, PAGE_WIDTH, configHue, configThemeFixed}}>
-			// Load the theme from local storage
-			const theme = localStorage.getItem('theme') || DEFAULT_THEME;
-			switch (theme) {
-				case LIGHT_MODE:
-					document.documentElement.classList.remove('dark');
-					break
-				case DARK_MODE:
-					document.documentElement.classList.add('dark');
-					break
-				case AUTO_MODE:
-					if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-						document.documentElement.classList.add('dark');
-					} else {
-						document.documentElement.classList.remove('dark');
+		<script is:inline define:vars={{DEFAULT_THEME, LIGHT_MODE, DARK_MODE, AUTO_MODE, PAGE_WIDTH, configHue, configThemeFixed, configLightDark}}>
+			const root = document.documentElement;
+
+			function applyTheme(theme) {
+				switch (theme) {
+					case LIGHT_MODE:
+						root.classList.remove('dark');
+						break;
+					case DARK_MODE:
+						root.classList.add('dark');
+						break;
+					case AUTO_MODE:
+						if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+							root.classList.add('dark');
+						} else {
+							root.classList.remove('dark');
+						}
+				}
+			}
+
+			// If the site config fixes the light/dark mode, it takes precedence over localStorage.
+			// Otherwise, fall back to the stored value or the default.
+			const theme = configLightDark ?? localStorage.getItem('theme') ?? DEFAULT_THEME;
+			applyTheme(theme);
+
+			// Guard against browser extensions (e.g. Microsoft Fabric/productivity tools) that
+			// strip classes on <html>. When the mode is locked by config, reapply it on any
+			// class mutation — keeps the theme stable across the page lifecycle.
+			if (configLightDark === DARK_MODE || configLightDark === LIGHT_MODE) {
+				const expected = configLightDark === DARK_MODE;
+				new MutationObserver(() => {
+					if (root.classList.contains('dark') !== expected) {
+						root.classList.toggle('dark', expected);
 					}
+				}).observe(root, { attributes: true, attributeFilter: ['class'] });
 			}
 
 			// Load the hue from local storage
 			const hue = configThemeFixed ? configHue : localStorage.getItem('hue') || configHue;
-			document.documentElement.style.setProperty('--hue', hue);
+			root.style.setProperty('--hue', hue);
 
 		</script>
 		<style define:vars={{
