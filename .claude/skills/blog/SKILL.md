@@ -14,6 +14,7 @@ Read these reference files to understand who the author is and how they write. T
 1. **`references/author-profile.md`** — Author's background, expertise, interests, and technical context
 2. **`references/writing-preferences.md`** — Voice, tone, banned language, formatting rules, and style patterns
 3. **`references/content-tags.md`** — Tags and categories in use, which posts use them — use this to suggest tags for new posts and identify connection opportunities between articles
+4. **`references/image-prompts.md`** — How to produce a ready-to-paste cover image prompt (describe the article only; the Opal app applies the style) — read this before generating any cover image prompt
 
 These reference files are living documents. If during the writing process you discover something worth remembering (a new preference the author expresses, a pattern that works well, feedback on a draft), suggest updating the relevant reference file.
 
@@ -28,6 +29,7 @@ Determine the mode from the user's request:
 | "write a post about...", "create a blog post", "new post" | **Create** |
 | "give me ideas", "what should I write about", "brainstorm topics" | **Ideas** |
 | "improve this post", "review my post", "make this better" | **Improve** |
+| "create the image prompt", "generate a cover image prompt", "prompt for the banner" | **Image Prompt** |
 
 If ambiguous, ask which mode they want. If they provide a topic directly, default to **Create**.
 
@@ -145,6 +147,29 @@ After creating the file, present what was done and a pre-publish checklist:
 - Read for flow
 - Set `draft: false` when ready
 - Preview with `pnpm dev`
+
+### Step 7: Cover Image Prompt
+
+Offer to generate a cover image prompt (or do it automatically if the post has `image: ""`). Follow **Mode: Image Prompt** below. The author pastes the result into their image AI (Nano Banana via Opal) to produce the banner.
+
+---
+
+## Mode: Image Prompt
+
+Generate a ready-to-paste prompt for the post's cover image. The prompt **only describes the article and key elements** — the Opal image app applies the visual style, so never include style, palette, aspect ratio, or composition direction.
+
+### Step 1: Read the rules
+
+Read `references/image-prompts.md` for what the prompt must and must not contain. Read the target post if you don't already have its topic.
+
+### Step 2: Describe the article
+
+- Distill the post into one or two plain sentences: what it's about, as a concept (not a literal screenshot or UI).
+- Optionally list a few concrete key elements worth showing — only what genuinely matters to the topic.
+
+### Step 3: Output the prompt
+
+Present a single fenced `text` block the author can paste directly into the Opal app, following the output format in the reference. Do not set the `image:` frontmatter field — the author generates and saves the image, then wires it up.
 
 ---
 

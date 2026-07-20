@@ -1,7 +1,7 @@
 ---
-title: "Building a Visual Identity with Nano Banana and Gemini Gems"
+title: "Building a Visual Identity with Nano Banana and Opal"
 published: 2026-02-01
-description: "How I brought Frutiger Aero and Solarpunk aesthetics to my blog using AI image generation and Gemini Gems"
+description: "How I brought Frutiger Aero and Solarpunk aesthetics to my blog using AI image generation and Opal"
 image: ./banner1.png
 tags: [AI, Design, Prompt Engineering]
 category: Workflow
@@ -60,19 +60,19 @@ I explicitly said "don't include the article title in the image." It generated t
 
 The model wasn't broken. I just wasn't giving it enough context.
 
-## The Solution: Detailed Prompts + Gemini Gems
+## The Solution: Detailed Prompts + Opal
 
 Image models don't read your mind. They need explicit context, constraints, and examples. A short prompt like "make a tech blog banner" leaves too much room for interpretation.
 
 So I spent time refining a detailed prompt — using Claude and Gemini itself to help me iterate on the language until I got consistent results.
 
-The problem? Writing a 300-word prompt every time I need an image is annoying. That's where **[Gemini Gems](https://gemini.google/overview/gems/)** comes in.
+The problem? Writing a 300-word prompt every time I need an image is annoying. That's where **[Opal](https://opal.google/)** comes in.
 
-Gems are custom AI assistants you can create in Gemini. You give them detailed instructions once, and they remember them. I created two Gems — one for Frutiger Aero, one for Frutiger Solarpunk.
+Opal lets you turn a detailed prompt into a small AI app that remembers your instructions. You set up the style once, and every run stays on-brand. I built one for Frutiger Solarpunk, and you can try it here: **[Frutiger Solarpunk app](https://opal.google/app/1jW6msahpS3Ptzj_wwkjWiNcZBJZVuoCb)**.
 
 Now my workflow is simple:
 
-1. Open my "Frutiger Aero" or "Frutiger Solarpunk" Gem
+1. Open my Frutiger Solarpunk app on Opal
 2. Say: "Create an image for an article about CSS frameworks"
 3. Get a consistent, on-brand image
 
@@ -139,7 +139,7 @@ Ensure each image has a distinct layout and focal point. Experiment with perspec
 - If the user says "try again", "regenerate", or similar, generate a completely new image with a different composition and element selection within the Solarpunk style.
 ```
 
-[Solarpunk Gem](https://gemini.google.com/gem-labs/1jW6msahpS3Ptzj_wwkjWiNcZBJZVuoCb)
+[Solarpunk app on Opal](https://opal.google/app/1jW6msahpS3Ptzj_wwkjWiNcZBJZVuoCb)
 
 ## What I Learned
 
@@ -149,7 +149,7 @@ A few things that helped along the way:
 
 **Add variability instructions.** Without them, you'll get the same composition every time — central orb, lens flares, same angle. I added rules like "experiment with different perspectives" and "avoid repetitive patterns."
 
-**Save your prompts somewhere.** Gemini Gems works great for me, but even a text file would do. The point is not having to rewrite 300 words every time you need an image.
+**Save your prompts somewhere.** Opal works great for me, but even a text file would do. The point is not having to rewrite 300 words every time you need an image.
 
 And honestly, the most important thing was picking an aesthetic I actually care about. The images feel like *my* blog because they reflect things I genuinely love — those memories of customizing my desktop, that optimism about technology, the cozy futures I imagine.
 
