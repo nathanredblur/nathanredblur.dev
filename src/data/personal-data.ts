@@ -1,17 +1,17 @@
 export const personalData = {
   pageTitle:
-    "Nathan Rico - Front-End Developer | React Developer | Web Development Expert",
+    "Nathan Rico - AI-native Senior Frontend Engineer | React, Next.js, Astro",
   pageDescription:
-    "Front-end developer | React Specialist | Offering innovative solutions. Let's shape the future together. Explore my skills and experience!",
+    "AI-native Senior Frontend Engineer with 20 years of experience in React, Next.js, and Astro. Building products with agentic workflows and context engineering, rigorous about architecture, security, and code quality.",
   domain: "https://nathanredblur.dev",
   repo: "https://github.com/nathanredblur/nathanredblur.dev",
 
   name: "Nathan Rico",
   profile: "/photo.webp",
-  designation: "Front-End Developer Expert",
-  description: `Hi, I'm Jonathan Rico, a dynamic front-end developer with a keen eye for user-centric design. With a solid foundation in frameworks like React, Redux, and Next.js, I bring over a decade of hands-on experience in the evolving landscape of web development.
-    I've actively contributed to large-scale projects, leveraging a data-driven approach and collaborating with UX designers to architect optimal front-end solutions. Mentoring new developers is not just a task, it's a passion that fuels my commitment to continuous learning.
-    Let's innovate together!`,
+  designation: "AI-native Senior Frontend Engineer",
+  description: `Hi, I'm Jonathan Rico, an AI-native senior frontend engineer with 20 years of experience building products people actually love. I specialize in React, Next.js, and Astro, and I work day-to-day with agentic workflows (Claude Code, Cursor), applying context engineering so AI agents operate with full architectural awareness.
+    I stay rigorous about architecture review, security validation, and code quality on AI-generated outputs. I've shipped production frontends across fintech, supply chain, travel aggregation, and peer-to-peer car sharing, always owning quality, performance, and UX.
+    Driven by developer experience and internal tooling. Let's build together!`,
   email: "nathanredblur@duck.com",
   phone: "",
   address: "",

@@ -35,14 +35,15 @@ export const skillCategories: SkillCategory[] = [
       "TypeScript",
       "Tailwind CSS",
       "shadcn/ui",
+      "Ant Design",
       "TanStack Query",
       "Framer Motion",
     ],
   },
   {
     id: "platform",
-    label: "Platform & Infra",
-    blurb: "Edge-first delivery, typed APIs, fast builds.",
+    label: "Platform & Services",
+    blurb: "Edge-first delivery, typed APIs, observability, and services.",
     image: "/images/categories/platform.png",
     items: [
       "Cloudflare Workers",
@@ -51,6 +52,10 @@ export const skillCategories: SkillCategory[] = [
       "GraphQL",
       "Vite",
       "Git",
+      "Stripe",
+      "Sanity",
+      "Sentry",
+      "PostHog",
     ],
   },
   {
@@ -65,6 +70,8 @@ export const skillCategories: SkillCategory[] = [
       "Developer Experience",
       "Design Systems",
       "Figma",
+      "Storybook",
+      "Playwright",
     ],
   },
 ];

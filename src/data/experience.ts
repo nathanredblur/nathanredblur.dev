@@ -17,14 +17,16 @@ export const experiences: Experience[] = [
     duration: "May 2025 - Present",
     location: "Remote",
     webDescription:
-      "Developing mission-critical banking applications serving millions in the financial services sector. Leading accessibility initiatives to achieve WCAG 2.1 AA compliance while building modern React/TypeScript interfaces. Pioneering AI-assisted development with Claude 4.5, GPT 5.2, and Cursor to accelerate code quality, architectural decisions, and automated reviews. Maintaining excellence through Jest, React Testing Library, and Playwright testing.",
+      'Building mission-critical banking applications in the financial services sector, with agentic workflows as the default delivery mode. I apply context engineering to structure codebases and AI configurations so agents (Claude Code, Cursor) operate with full architectural awareness, while staying rigorous about architecture review, security validation, and code quality on AI-generated output. I engineered "workon", an agentic Claude Code skill with multi-agent orchestration and worktree support that covers the full development cycle from ticket to merge request, and built a frontend DevTools platform to switch mocks, toggle feature flags and experiments, and explore routes in real time without recompiling. I also lead accessibility initiatives to WCAG 2.1 AA and maintain quality with Jest, React Testing Library, and Playwright.',
     resumeSummary:
-      "Parser is a software consultancy delivering mission-critical banking applications for the financial services sector.",
+      "Parser is a software consultancy delivering mission-critical banking applications for the financial services sector, where agentic workflows and context engineering are the default delivery mode.",
     resumeBullets: [
-      "Build modern React/TypeScript interfaces for banking applications serving millions of end users.",
+      "Apply agentic workflows (Claude Code, Cursor) with context engineering to structure codebases and AI configurations for full architectural awareness, while maintaining rigorous code review, security validation, and quality of AI-generated output.",
+      'Engineered "workon", an agentic Claude Code skill with multi-agent orchestration and worktree support that automates the full development lifecycle from ticket intake to merge request.',
+      "Built a suite of internal developer tools that cut onboarding time and let developers switch mocks, toggle feature flags and experiments, and explore routes in real time without manual setup or recompilation.",
+      "Contributed to shared UI component libraries, reducing regressions and improving consistency across product surfaces.",
+      "Managed frontend operations including dependency updates, performance optimizations, refactors, and migrations to reduce technical debt.",
       "Lead accessibility initiatives to achieve WCAG 2.1 AA compliance across product surfaces.",
-      "Pioneer AI-assisted development (Claude, GPT, Cursor) to accelerate code quality and architectural reviews.",
-      "Maintain engineering excellence with Jest, React Testing Library, and Playwright.",
     ],
   },
   {
@@ -67,7 +69,7 @@ export const experiences: Experience[] = [
     title: "Senior React Developer",
     company: "Getaround",
     type: "React",
-    duration: "May 2022 - Feb 2024",
+    duration: "May 2022 - May 2024",
     location: "Remote",
     webDescription:
       "I led the development of new product features from start to finish, including conception, research, documentation, maintenance, and refinement. I also contributed to key initiatives to enhance system elegance and productivity, focusing on streamlining processes and internal tools. Over time, I took ownership of part of the codebase, adhering to standards and best practices while driving its growth. Additionally, I conducted peer code reviews, contributed to our design system, and collaborated on product vision and software design decisions.",
