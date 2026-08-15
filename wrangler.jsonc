@@ -1,16 +1,10 @@
 {
-	"main": "dist/_worker.js/index.js",
-	"name": "nathanredblur-blog",
+  "name": "nathanredblur-blog",
   "compatibility_date": "2026-02-02",
-  "compatibility_flags": [
-    "nodejs_compat",
-    "global_fetch_strictly_public"
-  ],
-	"assets": {
-		"binding": "ASSETS",
-		"directory": "./dist"
-	},
-	"observability": {
+  "assets": {
+    "directory": "./dist"
+  },
+  "observability": {
     "enabled": true
   }
 }
