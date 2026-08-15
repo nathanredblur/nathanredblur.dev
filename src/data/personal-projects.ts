@@ -17,7 +17,13 @@ export const personalProjects: PersonalProject[] = [
     website: "https://dog.nathanredblur.dev/",
     screenshot: "/images/dogwalks.gif",
     status: "In development",
-    tools: ["TypeScript", "React", "Tailwind CSS", "Google Sheets", "Cloudflare Workers"],
+    tools: [
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Google Sheets",
+      "Cloudflare Workers",
+    ],
   },
   {
     title: "Mac Snap",

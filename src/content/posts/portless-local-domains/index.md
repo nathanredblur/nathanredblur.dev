@@ -5,7 +5,7 @@ description: "From nginx reverse proxies to simple HTTPS local domains in minute
 image: ./cover.png
 tags: ["Tools", "macOS", "Tutorial", "CLI", "Productivity"]
 category: "Tutorials"
-draft: true
+draft: false
 ---
 
 I've been running services on my Mac mini M1 for a while now — AdGuard Home, local dev servers, various tools I want accessible from any device on my network. For the longest time, I used nginx as a reverse proxy combined with AdGuard Home DNS to route custom local domains to the right ports.
