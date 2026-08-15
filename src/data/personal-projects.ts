@@ -10,6 +10,16 @@ export interface PersonalProject {
 
 export const personalProjects: PersonalProject[] = [
   {
+    title: "DogWalks",
+    description:
+      "A web app for dog walkers to track walks, clients, and payments. Syncs with Google Sheets for backup and shared viewing, and exposes a public client link backed by a Google Drive snapshot that needs no sign-in. Works offline as a PWA.",
+    github: "https://github.com/nathanredblur/doggywalky",
+    website: "https://dog.nathanredblur.dev/",
+    screenshot: "/images/dogwalks.gif",
+    status: "In development",
+    tools: ["TypeScript", "React", "Tailwind CSS", "Google Sheets", "Cloudflare Workers"],
+  },
+  {
     title: "Mac Snap",
     description:
       "A comprehensive macOS setup tool designed to streamline the process of configuring a new Mac or refreshing an existing one. Features 105+ curated applications, 42+ system tweaks, smart selection tools, and one-click Homebrew installation scripts.",
