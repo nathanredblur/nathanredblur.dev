@@ -1,0 +1,2 @@
+Article: A developer measuring the true cost of an AI coding agent by counting the round-trips it makes, and realizing the slowest, most expensive one is the moment the agent stops to ask a human a question.
+Key elements: a chain of quick automated back-and-forth exchanges between an agent and a machine, one much longer pause where the exchange waits on a person, a counter or tally tracking the round-trips.

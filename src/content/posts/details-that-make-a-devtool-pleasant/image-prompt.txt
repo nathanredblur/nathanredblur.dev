@@ -1,0 +1,2 @@
+Article: the small, unglamorous details of polish that make a developer tool pleasant to use, the kind of friction-removing care that never appears on a feature list but decides whether people keep reaching for the tool.
+Key elements: a floating developer panel with tabs, a list where the currently active items are pinned to the top while the rest scroll below, a keyboard cursor resting on the item you are already on, a small search box.

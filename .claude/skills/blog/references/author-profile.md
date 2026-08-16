@@ -7,11 +7,12 @@ Update this file as Nathan's situation, tools, or interests change.
 
 ## Professional Background
 
-- **Role**: Senior Front-end Developer, 15+ years of experience
-- **Core stack**: React, Next.js, TypeScript, Tailwind CSS
-- **Experience**: Led teams, mentored developers, built large-scale products
-- **Companies**: Getaround, AirTm, AllTheRooms, among others
-- **Values**: Clean code, good UX, data-driven decisions
+- **Role**: AI-native Senior Software Engineer, 20 years of experience (strongest in frontend)
+- **Core stack**: React, Next.js, Astro, TypeScript, Tailwind CSS
+- **AI-native workflow**: agentic development with Claude Code and Cursor, context engineering, building internal tooling (e.g. `workon`, an in-app DevTools panel)
+- **Experience**: Led teams, mentored developers, built large-scale products; owns the full product surface from UI to Node/Nest APIs
+- **Companies**: Parser, EPAM, Getaround, AirTm, AllTheRooms, among others
+- **Values**: Clean code, good UX, developer experience, data-driven decisions
 
 ## Technical Environment
 

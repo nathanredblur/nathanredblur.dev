@@ -1,0 +1,2 @@
+Article: A written architectural rule turning into an automated check that guards a system. The idea that a constraint written only as a note quietly decays, while a constraint turned into a command that fails when broken stays enforced.
+Key elements: a page of written rules or notes, a checkpoint or gate that blocks something that violates a rule, a stamp or signal marking pass versus fail.

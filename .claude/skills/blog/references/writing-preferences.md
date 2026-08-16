@@ -36,6 +36,8 @@ These are automatic red flags. Never use them — they make content feel generic
 - "In this blog post, we will explore..." — be direct, just start
 - "In today's fast-paced world of technology..." — filler, cut it
 - "As you might know" / "As we all know..." — if we all know, why are you writing it?
+- "I have to be honest" / "let me be honest" / "to be honest": filler that signals AI. Say the thing directly.
+- "the question that matters" / "the thing that matters" / "here's what matters": hollow emphasis. Show why it matters instead of announcing it.
 
 ### Dismissive Phrases
 
@@ -52,6 +54,11 @@ These are automatic red flags. Never use them — they make content feel generic
 - "game-changer", "chaos", "disaster", "revolutionary", "groundbreaking" — hype without substance
 - "absolutely", "literally" (unless literal), "incredibly", "insanely" — filler superlatives
 - "This is amazing!" — instead, explain *what* you like and *why*
+
+### Punctuation Tics (AI Tells)
+
+- **Em-dashes (—)**: AI massively overuses them, and the author has noticed. Avoid them. Rewrite with a period, comma, colon, or parentheses. An occasional one is acceptable; two or three in a paragraph is a dead giveaway that a machine wrote it.
+- **En-dashes (–) used as sentence separators**: same rule. Rewrite the sentence.
 
 ## Expressions & Patterns that WORK
 

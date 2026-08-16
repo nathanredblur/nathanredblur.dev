@@ -1,0 +1,2 @@
+Article: A developer builds an in-app control panel that lets them switch what a web app's screens show, because the interface is local but the data driving it is remote and out of their control. The panel sits at the boundary between the app and the network, acting as a switchboard for the state the UI renders.
+Key elements: a floating control panel overlaid on a web app, a switchboard or patch-panel of connections at the edge between a browser window and remote data, dropdowns selecting different responses, toggles for feature flags, error and loading states.
