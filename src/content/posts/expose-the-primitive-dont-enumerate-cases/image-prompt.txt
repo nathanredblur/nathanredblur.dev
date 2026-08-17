@@ -1,2 +1,0 @@
-Article: A developer tool that exposes one small underlying primitive instead of a long list of preset buttons, so a single control can produce endless different behaviors. A plain object of named entries feeds one dropdown that can stand in for any kind of network response.
-Key elements: a single dropdown selector, a plain object with a handful of named keys behind it, branching lines from that one control into many different outcomes (a happy result, an error, a spinner, a sequence of states), one underlying building block rather than many separate switches.

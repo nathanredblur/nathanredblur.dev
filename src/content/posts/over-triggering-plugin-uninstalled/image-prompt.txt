@@ -1,2 +1,0 @@
-Article: A software plugin that activates only when it should, staying silent for ordinary requests and springing into action only when the right context is present. The idea of a gate that decides whether an automated helper is allowed to respond.
-Key elements: a gate or checkpoint controlling access, one path where a request passes through untouched and another where it activates a machine, a small warning about a false label being stamped repeatedly.

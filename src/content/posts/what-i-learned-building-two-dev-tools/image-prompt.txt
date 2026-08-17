@@ -1,2 +1,0 @@
-Article: A reflection on the lessons learned from building two very different developer tools over one year, one that turns a ticket into a merge request and one that is an in-app DevTools panel, and how both shared the same engineering philosophy.
-Key elements: two distinct tools connected by a shared thread, a terminal-based ticket-to-merge-request workflow, a browser DevTools overlay panel, a single underlying idea linking both.

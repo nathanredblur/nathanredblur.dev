@@ -1,95 +1,57 @@
 ---
 title: "Your AI Writes the Code. You Do Everything Else."
-published: 2026-08-15
-description: "My AI assistant is great at exactly one part of the job: writing code. Here's all the manual work it left me with on every ticket, and what I did about it."
+published: 2026-08-16
+description: "My AI assistant is genuinely good at one thing: writing the code in front of it. Everything wrapped around that is still mine, and that turned out to be most of the job."
 image: "./cover.png"
 tags: [Developer Experience, AI, Developer Tooling]
 category: Development
 draft: true
 ---
 
-My AI coding assistant is great at exactly one part of my job: writing code.
+My AI assistant is genuinely good at one thing: writing the code in front of it. Give it a clear problem and enough context, and the diff comes back clean. That part, the part everyone talks about, is basically solved for me.
 
-Everything wrapped around that part is still mine. Reading the ticket. Naming the branch to the team convention. Splitting the work into reviewable commits. Opening the merge request with a description a human can actually review. Reading the review comments back. Watching the pipeline. Shipping the branch to a test server so someone can look at it.
+Everything around it is still mine.
 
-I do all of that by hand, every ticket, in the same order, with the same dozen context switches. In March 2026 I finally counted them, and the number annoyed me enough to fix it.
+I noticed this the way you notice a slow leak. Not all at once, but as the same small motions repeating, ticket after ticket. The assistant wrote the code. I did the rest. And the rest, it turns out, is most of the job.
 
-## The assistant could do any step. That was the problem.
+## A normal morning
 
-Here's the trap: the assistant *can* do any one of those steps, if I explain it.
+Take a normal morning. I open a ticket, and the first thing I do is reassemble it in my head, because the real content is never in one place. The description says one thing. A comment from three days ago already answered the question I was about to ask. The design doc that actually matters is linked two clicks away, and the mockup that shows the empty state is an attachment I almost scrolled past.
 
-So explaining it became the work. Every new ticket meant re-teaching the same conventions to a fresh context window. Each re-teaching came out slightly different from the last, so the output did too. I was the memory the tool didn't have.
+So I read all of it, pull the pieces together, and hand the assistant a version of the ticket that's more complete than the ticket itself. Then, the next day, I do a smaller version of the same thing just to remember what I decided yesterday: which edge case I chose, why I ruled out the other approach, what the plan even was.
 
-Here's the manual work that pushed me over the edge. None of these is a hard problem. That's the point. They're cheap on their own and expensive as a habit.
+Then I go to write code, and I hit the next thing that lives only in my head: the commands. This project uses pnpm and one test runner. The one I was in last week uses yarn and a different one. The lint command, the typecheck command, the way you run a single test file, the config that sits slightly off from the default. None of that is written anywhere the assistant can see. It's in my memory, and every time I switch between projects I reload it by hand.
 
-## The ticket lives in six places, the assistant sees one
+The assistant will happily run whatever I tell it to run. Telling it the right thing, for this repo, is my job. Get it wrong and nothing errors loudly. It just does something subtly different from what the pipeline will do, and I find out later.
 
-A ticket isn't a paragraph. It's a description, a comment thread, a handful of attachments, links to design docs, and related issues. When I pasted "the ticket" into a chat, I pasted the description, and lost the comment where someone already answered the API question, plus the mockup showing the empty state.
+None of these is a hard problem. That's what took me a while to see. Each one is small, obvious, and instantly forgettable. They are cheap on their own and expensive as a habit.
 
-The obvious fix is to paste more. That fails for a boring reason: I don't know which of the six places holds the load-bearing detail until after I've built the wrong thing.
+## The loop that wears on me
 
-## Review feedback is scattered across four places
+The part that wears on me most is the wait-fix-wait loop.
 
-Feedback on a merge request doesn't land in one inbox. Human reviewers leave comments anchored to the diff. Review bots leave their own. The pipeline reports failures. Security and quality scanners pile on more. Collecting all of it means checking four surfaces, and the tools quietly disagree about what counts as a resolved thread, so a real comment is easy to miss under the bot noise.
+I push. I wait for the pipeline. It fails. The honest cost here isn't drama, it's time. I have to work out *why* it failed. Sometimes that's genuinely worth it, a real bug I'm glad something caught. More often it's a lint rule, a flaky test, or a coverage gate sitting a hair under the threshold. Either way I read the failure, I understand it, and if the fix isn't obvious I copy the error back to the assistant and ask. It writes a fix. I push again. I wait for the whole pipeline again.
 
-## A red pipeline is twenty minutes of log archaeology
+That waiting is the tax. Not one big block of it, a few minutes here and a few there, spread across a loop I run several times before a change is done. Multiply it by the number of times a real change goes red before it merges, and a good chunk of the afternoon is watching a progress bar and pasting errors into a chat.
 
-The pipeline fails. Now find which of forty jobs failed *first*, not the loudest one, the first one. Open the trace. Scroll past the ANSI color codes that make it unreadable in a terminal. Decide whether this is a real regression, a flake, or a coverage gate sitting at 77.5% against an 80% threshold.
+The same shape shows up everywhere once you start looking. Naming the branch to the team convention. Splitting a pile of changes into commits someone could actually review. Writing a merge request description a reviewer can follow without a call. Reading the review comments back and sorting which ones a bot left from which ones a human did. Each is a small manual step. Each needs a specific piece of knowledge (the convention, the command, the context) that the assistant doesn't have and that I re-supply by hand.
 
-The tempting move is to retry first and read later. It works often enough to become a habit, and wastes fifteen minutes when it doesn't.
+## The pattern underneath
 
-## Shipping to a test box is babysitting, then a login dance
+That's when it collapsed into one sentence for me.
 
-The change needs to run somewhere real. Sometimes that's so a reviewer or a designer can look at it. Just as often it's so I can prove to myself the fix works outside my machine and attach the evidence to the merge request. Either way, I sit on the CI page and refresh it until the build goes green. Then the actual chore starts: dig up the deploy command, remember the service name, SSH into the box, point it at my branch build, confirm it came up.
+The knowledge needed to do each step correctly lives outside the assistant. And re-supplying it by hand costs more than the step itself.
 
-None of that needs me. It needs something that watches the pipeline, notices the moment it passes, and runs the deploy itself, so I'm not checking a browser tab every ten minutes or re-reading yesterday's notes to remember the incantation.
+The ticket's real content, scattered across places. This repo's real commands, sitting in my memory. The pipeline's real failure, buried in a log. Yesterday's real decisions, already gone by this morning. The assistant could do any one of these steps if I explained it. Explaining it, every time, in a slightly different way, was the work. Somewhere along the line I had become the memory the tool didn't have, and I was paying for it in small increments all day.
 
-## Day two starts by forgetting day one
+Once I saw it stated that plainly, the fix stopped being "wait for a better AI" and turned into something more boring and more useful: give the knowledge a home. Stop explaining. Start encoding.
 
-A ticket that takes two days takes two or three sessions. Everything the assistant learned in session one (the plan I approved, the edge cases I decided, the branch it made, the comments it already addressed) is gone.
+## So I built a place to put it
 
-Session two re-derives all of it, badly, and asks me questions I already answered. I tried keeping a scratch file by hand. I stopped, because maintaining it is work that competes with the work.
+So I built one. It's a workflow I put together on top of Claude Code that owns the stretch from ticket to merge request: reading the ticket, creating the branch, running the right commands, grouping the commits, collecting the feedback, reading the pipeline. Not because any of those steps is hard, but because the knowledge that makes each one correct finally had somewhere to live that wasn't my head.
 
-## One ticket at a time, or you lose the session
+The interesting part was never the automation. It's the reframe. It isn't a tool that does the steps for me. It's a durable home for the knowledge that makes each step correct, and the automation falls out of having somewhere to put it.
 
-A ticket goes to review and I want to start the next one. My options were both bad: stash and switch branches, which throws away the live session holding all the context for the paused ticket, or set up a second checkout by hand and lose the conventions that make the first one work.
+I'll get into what it actually does next: [what workon does](/posts/what-workon-does/).
 
-So I waited. Waiting is what CI is for, except now I'm blocked on my own tooling instead of the build.
-
-## The pattern underneath all of it
-
-Every one of these is the same problem wearing a different hat: **the knowledge needed to do a step correctly lives outside the assistant's context, and re-supplying it by hand costs more than the step itself.**
-
-The ticket's real content. The review's real comments. The pipeline's real failure. The deploy's real commands. Yesterday's real decisions. Once I saw it stated that plainly, the fix was obvious: stop explaining, start encoding.
-
-## So I built a place to put the knowledge
-
-The result is a workflow I call `workon`, a plugin for Claude Code that owns the whole ticket-to-merge-request cycle. One orchestrator that routes intent, a set of single-purpose skills that each own one phase, a pile of small bash scripts that do the actual API work, and a few subagents that read the noisy things (like CI logs) in their own context so my main conversation stays readable.
-
-It's not open source. It encodes one team's conventions and one environment's constraints. But the interesting part was never the code. It's the reframe:
-
-> It isn't an automation of the steps. It's a durable home for the knowledge that makes each step correct, and the automation falls out of having somewhere to put it.
-
-The rule I care about most: **it never writes code without a plan I approved.** The assistant is fast, confident, and occasionally confidently wrong, so the one gate I won't remove is that a plan gets my sign-off before anything gets implemented.
-
-## What this actually saves
-
-I don't have a "saves 40%" number for you. Nobody was timing this. Writing software isn't making shoes. Nobody stands over you with a stopwatch counting how long it takes to read a red pipeline.
-
-:::warning[These are estimates, not measurements]
-The figures below come from doing this work by hand for months, not from instrumentation. Time your own loop before you trust any of them.
-:::
-
-My rough accounting for one moderately difficult ticket (a few files, two days, goes red twice before merging) lands around **an hour of purely mechanical work**: reading the ticket, collecting review feedback, two pipeline investigations, shipping to a test box, reconstructing context on day two. Work that takes no judgment, produces nothing, and gets redone identically on the next ticket.
-
-But minutes are the wrong unit. The real measure is one you already feel: how many times a day does it frustrate you that this isn't easier, that the friction is sitting between you and the thing you actually wanted to build?
-
-That's what I was optimizing. Not seconds saved. Attention reclaimed.
-
-## What's next
-
-This is the first post in a series about that idea: friction is a real engineering problem, even when each instance is small.
-
-The next ones go deeper. How `workon` is actually built, with skills, scripts, and subagents. The lesson that surprised me most: in an interactive agent, the most expensive thing you can do is ask the human a question. And its frontend twin, an in-app DevTools panel I built for the same reason in a completely different domain.
-
-If your AI writes the code and leaves you holding everything else, what's the step you re-explain most? That's the one worth encoding first.
+If your AI writes the code and leaves you holding everything else, which step do you re-explain the most? That's the one worth encoding first.

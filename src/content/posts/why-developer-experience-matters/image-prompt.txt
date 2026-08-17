@@ -1,0 +1,2 @@
+Article: an essay arguing that developer experience is a real but underinvested lever, because the friction developers pay is tiny each time and repeated all day, so it never shows up as a task anyone owns.
+Key elements: a developer at a workstation, a long repetitive path of small steps versus a single shortcut, small friction points accumulating into a large hidden pile, a work item with no assigned owner.

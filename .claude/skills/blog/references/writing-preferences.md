@@ -15,6 +15,18 @@ Update this file when preferences evolve, new patterns emerge, or feedback revea
 - **Admits uncertainty**: says when something is new or experimental
 - **Natural humor**: when it fits, never forced
 
+## Focus & Honesty (the AI failure modes to avoid)
+
+These are the mistakes that most make a post read as AI-written. Treat them as hard rules.
+
+- **One post, one topic.** Each article covers a single, clearly-scoped idea. Don't mix themes. If an interesting tangent doesn't serve the article's thesis, cut it or give it its own post. A "cool bug" or side story that doesn't advance the main point does not belong, no matter how good it is.
+- **Don't exaggerate.** State the real cost plainly; the honest version is always more credible.
+  - No inflated significance: not "the most useful thing I learned all year", not "the bug that gets your plugin uninstalled" when nobody uninstalled anything.
+  - No dramatized pain: a red pipeline is annoying and slow to diagnose, not "twenty minutes of archaeology" every single time. Pasting the error into the AI and waiting for another pipeline is the honest cost. The friction is real without the drama.
+- **Don't over-explain fundamentals.** The reader is a working developer. Never define what markdown, JSON, HTML, a merge request, or a commit is. Name them and move on. Spend words on the non-obvious (why a description has an ~800-character budget), not the obvious (what a JSON contract is).
+- **Tell the story, don't list the problems.** When motivating a piece, narrate the actual experience (the commands you re-remember, the context switch between projects with different configs, the wait-fix-wait CI loop). A bulleted catalog of problems reads as a spec, not a story.
+- **Earn every claim.** If you say something matters, show why in the same breath instead of announcing it.
+
 ## Banned Language
 
 These are automatic red flags. Never use them — they make content feel generic, AI-generated, or dishonest.
