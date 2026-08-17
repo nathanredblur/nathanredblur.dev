@@ -1,11 +1,11 @@
 ---
 title: "Why Developer Experience Deserves More Attention"
-published: 2026-08-16
+published: 2026-08-15
 description: "Developer experience is a real lever most teams underinvest in. The friction is small each time and invisible on any roadmap, which is exactly why it never gets fixed."
-image: ""
+image: "./cover.png"
 tags: [Developer Experience, Web Development]
 category: Development
-draft: true
+draft: false
 ---
 
 Here is a cost that never shows up anywhere. You want to see a screen in a certain state, so you log in as a test user, click through five pages to reach it, adjust some data to trigger the case you care about, and finally look at the thing you meant to look at. It takes ninety seconds. You do it maybe twenty times a day. Nobody has ever filed a ticket about it, because ninety seconds is not worth a ticket.

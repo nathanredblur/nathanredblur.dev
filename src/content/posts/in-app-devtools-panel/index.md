@@ -1,11 +1,11 @@
 ---
 title: "Building an In-App DevTools Panel"
-published: 2026-08-16
+published: 2026-08-14
 description: "The frontend is local, but the state that drives it is remote. Here's the friction that creates, and the panel I built to get cheap control over it."
-image: ""
+image: "./cover.png"
 tags: [Developer Experience, Web Development, Testing]
 category: Development
-draft: true
+draft: false
 ---
 
 There was no tool. That's where this starts.

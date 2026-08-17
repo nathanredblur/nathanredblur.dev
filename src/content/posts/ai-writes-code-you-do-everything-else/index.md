@@ -1,11 +1,11 @@
 ---
 title: "Your AI Writes the Code. You Do Everything Else."
-published: 2026-08-16
+published: 2026-08-10
 description: "My AI assistant is genuinely good at one thing: writing the code in front of it. Everything wrapped around that is still mine, and that turned out to be most of the job."
 image: "./cover.png"
 tags: [Developer Experience, AI, Developer Tooling]
 category: Development
-draft: true
+draft: false
 ---
 
 My AI assistant is genuinely good at one thing: writing the code in front of it. Give it a clear problem and enough context, and the diff comes back clean. That part, the part everyone talks about, is basically solved for me.

@@ -5,5 +5,14 @@ set -eu
 staged=$(git diff --cached --name-only --diff-filter=ACMR -- 'src/**' 'scripts/**')
 [ -z "$staged" ] && exit 0
 
-echo "$staged" | xargs pnpm exec biome format --write
-echo "$staged" | xargs git add
+# Biome only formats a subset of extensions (markdown and other unsupported
+# files would otherwise make `biome format` exit with an error). Filter the
+# staged list down to the formats Biome actually handles, and skip the hook
+# cleanly when nothing remains to process.
+formattable=$(printf '%s\n' "$staged" | \
+	grep -E '\.(js|jsx|mjs|cjs|ts|tsx|mts|cts|astro|svelte|vue|css|scss|json|jsonc|html|yml|yaml|graphql|gql)$' \
+	|| true)
+[ -z "$formattable" ] && exit 0
+
+printf '%s\n' "$formattable" | xargs pnpm exec biome format --write
+printf '%s\n' "$formattable" | xargs git add

@@ -1,11 +1,11 @@
 ---
 title: "How to Build Good AI Skills"
-published: 2026-08-16
+published: 2026-08-12
 description: "What I learned building skills for an AI coding harness: where the boundary between a skill and a script goes, why the description has a budget, and how to make one fire only when you ask."
 image: "./cover.png"
 tags: [AI, Developer Tooling, Developer Experience]
 category: Development
-draft: true
+draft: false
 ---
 
 I've spent the last few months turning my repetitive dev work into skills for an AI coding harness. Some I use every day. A few I built, watched misfire, and deleted. The difference was never how clever the prose was. It was whether I understood what a skill is for.

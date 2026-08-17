@@ -1,2 +1,0 @@
-Article: A developer's in-app debugging panel that acts as a switchboard between a web app's interface and the remote data that drives it, letting them swap network responses, feature flags, and error or loading states without touching code.
-Key elements: a floating control panel with dropdowns and toggles overlaying a web app, a switchboard or patch panel at the boundary between a browser window and a distant server, wires or signals being rerouted.

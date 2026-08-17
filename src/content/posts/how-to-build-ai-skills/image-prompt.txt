@@ -1,2 +1,0 @@
-Article: how a developer builds good skills for an AI coding assistant, where a small router coordinates several single-purpose modules, each carrying one piece of judgment, backed by simple helper scripts.
-Key elements: a central router module connected to several small single-purpose modules, small helper scripts feeding into those modules, a document card with a short header and a longer body, a short checklist.

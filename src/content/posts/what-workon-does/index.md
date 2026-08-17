@@ -1,11 +1,11 @@
 ---
 title: "What workon Does, and How It Helps My Day"
-published: 2026-08-16
+published: 2026-08-13
 description: "A look at workon, my Claude Code plugin that carries a ticket to a merge request, what it runs, what it refuses to do, and how it changes my day."
 image: "./cover.png"
 tags: [AI, Developer Tooling, Developer Experience]
 category: Development
-draft: true
+draft: false
 ---
 
 I built a Claude Code plugin called `workon`. It takes a ticket and carries it all the way to an open merge request, and I use it every working day.
